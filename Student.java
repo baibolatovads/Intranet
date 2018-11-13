@@ -43,8 +43,15 @@ public class Student extends Person{
         return marks.get(c);
     }
 
+    public void setMark(Mark m, Course c){
+        if(!getMarks().containsKey(c)){
+            marks.put(c, m);
+        }
+        marks.replace(c, m);
+    }
+
     public void viewTeacher(Course c){
-        Teacher t = getTeacher(c);
+        Teacher t = c.getTeacher();
         System.out.println(t);
     }
 
