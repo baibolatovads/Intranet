@@ -16,6 +16,7 @@ public class Course {
     int creditsNumber;
     Faculty faculty;
 
+    public Course(){}
     public Course(String name, String id, Teacher teacher, int creditNum, Faculty faculty){
         this.name = name;
         this.id = id;

@@ -3,7 +3,7 @@ package com.company;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Person implements Serializable {
+public abstract class Person implements Serializable {
     public String name;
     public String password;
     public String id;
