@@ -48,4 +48,8 @@ public class Teacher extends Person{
         if(!c.getCourseFiles().contains(cf)) return;
         c.getCourseFiles().remove(cf);
     }
+
+    public void sendOrders(Executor e, Order order){
+
+    }
 }
