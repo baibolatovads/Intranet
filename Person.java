@@ -57,5 +57,5 @@ public abstract class Person implements Serializable {
        return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
     }
 
-    
+
 }
