@@ -44,8 +44,8 @@ public class Student extends Person{
     }
 
     public void viewTeacher(Course c){
-        Teacher t = getTeacher(c);
-        System.out.println(t);
+        Teacher t = с.getTeacher();
+        System.out.println(t.toString());
     }
 
     public void viewCourses(){
