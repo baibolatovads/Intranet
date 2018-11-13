@@ -3,7 +3,7 @@ package com.company;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Person implements Serializable {
+public abstract class Person implements Serializable {
     public String name;
     public String password;
     public String id;
@@ -57,14 +57,5 @@ public class Person implements Serializable {
        return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
     }
 
-    public Person create(Person s){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello!\n Enter your name: ");
-        s.setName(sc.nextLine());
-        System.out.println("Enter id: ");
-        s.setId(sc.nextLine());
-        System.out.println("Enter password: ");
-        s.setPassword(sc.nextLine());
-        return s;
-    }
+
 }
