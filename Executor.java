@@ -1,4 +1,4 @@
 package com.company;
 
-public class Executor {
+public class Executor extends Person{
 }

@@ -10,17 +10,17 @@ public class CourseFile implements Serializable {
 
     public CourseFile(){}
 
-    public CourseFile(String title, String description, Date addDate){
+    public CourseFile(String title, String description){
         this.title = title;
         this.description = description;
-        this.addDate = addDate;
+        this.addDate = new Date();
     }
 
     @Override
     public String toString(){
         return "CourseFile{" +
                 "title='" + title + '\'' +
-                ", desc='" + desc + '\'' +
+                ", desc='" + description + '\'' +
                 ", addDate=" + addDate +
                 '}';
     }
@@ -45,11 +45,11 @@ public class CourseFile implements Serializable {
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = desc;
     }
 
     public Date getAddDate() {
