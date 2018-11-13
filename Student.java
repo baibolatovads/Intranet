@@ -29,7 +29,7 @@ public class Student extends Person{
         return current;
     }
 
-    public CourseFile getCourseFile(Course c){
+    public HashSet<CourseFile> getCourseFile(Course c){
         return c.getCourseFiles();
     }
     public HashMap<Course, Mark> getMarks(){
