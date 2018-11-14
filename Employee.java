@@ -18,6 +18,7 @@ public abstract class Employee extends Person implements Comparable<Employee> {
         this.salary = salary;
     }
 
+    
     @Override
     public String toString() {
         return "Employee{" +
