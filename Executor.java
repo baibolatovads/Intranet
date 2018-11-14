@@ -5,7 +5,7 @@ import java.nio.ReadOnlyBufferException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Executor extends Person implements Serializable {
+public class Executor extends Employee implements Serializable {
     static private HashSet<Order> orders;
     private HashSet<Order> rejectedOrders;
 
@@ -40,7 +40,8 @@ public class Executor extends Person implements Serializable {
     public String viewNewOrders(){
         String s = "";
         for(Order order : orders){
-            if(order.getType() != Type.ACCEPTED) s += order + "\n";
+            if(order.getType() != Type.ACCEPTED
+                    && !rejectedOrders.contains(order)) s += order + "\n";
         }
         return s;
     }
@@ -54,7 +55,7 @@ public class Executor extends Person implements Serializable {
         return s;
     }
 
-    public String viewDoneOrders(){
+    public String viewExecutedOrders(){
         String s = "";
         for(Order order : orders){
             if(order.getType() == Type.DONE && order.getExecutor() == this){

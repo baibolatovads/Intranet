@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public abstract class Person implements Serializable {
-    public String name;
-    public String password;
-    public String id;
+    protected String name;
+    protected String password;
+    protected String id;
 
     public Person(){}
     public Person(String name, String password, String id){

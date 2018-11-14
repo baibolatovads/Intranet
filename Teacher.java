@@ -3,7 +3,7 @@ package com.company;
 import java.io.Serializable;
 import java.util.HashSet;
 
-public class Teacher extends Person implements Serializable {
+public class Teacher extends Employee implements Serializable {
     private Rank rank;
     private HashSet<Course> courses;
 

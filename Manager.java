@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public abstract class Manager extends Employee{
+public class Manager extends Employee{
     public Manager()
     { }
     public Manager(String name, String password, String login, double salary)
