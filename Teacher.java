@@ -83,6 +83,3 @@ public class Teacher extends Employee implements Serializable {
                 '}';
     }
 }
-git add .
-git commit -m 'fixes'
-git push

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class Person implements Serializable {
+public abstract class Person implements Serializable, Interactive, Viewable {
     protected String name;
     protected String password;
     protected String id;
@@ -61,5 +61,16 @@ public abstract class Person implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(name, password, id);
+    }
+
+    @Override
+    public void login() {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Welcome!");
+        System.out.println("Enter name: ");
+        name = s.next();
+        System.out.println("Enter password: ");
+        password = s.next();
     }
 }
