@@ -1,9 +1,11 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
-public class Student extends Person{
+public class Student extends Person implements Serializable {
     //working on it
     private double gpa;
     private Faculty faculty;
@@ -38,7 +40,7 @@ public class Student extends Person{
 
     public Mark getMark(Course c){
         if(!getMarks().containsKey(c)){
-            marks.put(c, new Mark);
+            marks.put(c, null);
         }
         return marks.get(c);
     }
@@ -50,15 +52,22 @@ public class Student extends Person{
         marks.replace(c, m);
     }
 
-    public void viewTeacher(Course c){
+    public String viewTeacher(Course c){
         Teacher t = c.getTeacher();
-        System.out.println(t);
+        return t + "\n";
     }
 
-    public void viewCourses(){
+    public String viewCourses(){
+        String s = "";
         for(Course c : current){
-            System.out.println(c.toString());
+            s += c + "\n";
         }
+        return s;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gpa, faculty, current, passed, teachers, registration, marks);
     }
 
     public void setTeacher(Course course, Teacher teacher){
@@ -91,5 +100,14 @@ public class Student extends Person{
 
         return (gpa == student.gpa && faculty == student.faculty && current.equals(student.current)
                 && passed.equals(student.passed) && marks.equals(student.marks) && teachers.equals(student.teachers));
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                ", faculty=" + faculty +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

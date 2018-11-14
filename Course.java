@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
-public class Course {
+public class Course implements Serializable{
     private String name, id;
     private Teacher teacher;
     HashSet<Student> students;

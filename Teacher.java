@@ -1,8 +1,9 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Teacher extends Person{
+public class Teacher extends Person implements Serializable {
     private Rank rank;
     private HashSet<Course> courses;
 
@@ -49,7 +50,26 @@ public class Teacher extends Person{
         c.getCourseFiles().remove(cf);
     }
 
-    public void sendOrders(Executor e, Order order){
+    public String viewStudents(){
+        String s = "";
+        for(Course c : courses){
+            s += c + "\n---------------------------------\n";
+            for(Student student : c.getStudents())
+                s += student + "\n";
+            s += "---------------------------------\n";
+        }
+        return s;
+    }
 
+    public String viewCourse(){
+        String s = "";
+        for(Course c : courses){
+            s += c + "\n";
+        }
+        return s;
+    }
+
+    public void sendOrders(Order order){
+        Executor.addOrder(order);
     }
 }
