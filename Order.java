@@ -14,6 +14,10 @@ public class Order implements Serializable {
         this.type = type.PENDING;
     }
 
+    public Teacher getSender() {
+        return sender;
+    }
+
     public Executor getExecutor() {
         return executor;
     }
@@ -46,4 +50,6 @@ public class Order implements Serializable {
                 ", type=" + type +
                 '}';
     }
+
+
 }
