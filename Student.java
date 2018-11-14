@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Student extends Person implements Serializable {
+public class Student extends Person implements Serializable, Comparable {
     //working on it
     private double gpa;
     private Faculty faculty;
@@ -109,5 +109,14 @@ public class Student extends Person implements Serializable {
                 ", name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Student s = (Student)o;
+
+        if(gpa > s.gpa) return 1;
+        if(gpa == s.gpa) return 0;
+        return -1;
     }
 }

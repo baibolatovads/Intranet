@@ -51,6 +51,8 @@ public class Employee extends Person implements Comparable, Serializable {
     public int compareTo(Object o) {
         Employee e = (Employee)o;
 
-        
+        if(salary > e.salary) return 1;
+        if(salary == e.salary) return 0;
+        return -1;
     }
 }
