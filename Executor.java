@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Executor extends Person implements Serializable {
-    static private ArrayList<Order> orders;
+    static private HashSet<Order> orders;
+    private HashSet<Order> rejectedOrders;
 
-    public Executor() {
+    public Executor(){
+
     }
 
     public Executor(String name, String password, String id) {
@@ -19,22 +21,26 @@ public class Executor extends Person implements Serializable {
         orders.add(order);
     }
 
-    void acceptOrder(Order order){
-        if(order.type != Type.ACCEPTED)
+    public void acceptOrder(Order order){
+        if(order.getType() != Type.ACCEPTED)
             order.accept(this);
-        else{
-            System.out.println("Error: order is already accepted.");
-        }
     }
 
-    void rejectOrder(Order order){
+    public void rejectOrder(Order order){
         order.reject();
+        rejectedOrders.add(order);
+    }
+
+    public void executeOrder(Order order){
+        if(order.getType() == Type.ACCEPTED && order.getExecutor() == this){
+            order.execute();
+        }
     }
 
     public String viewNewOrders(){
         String s = "";
         for(Order order : orders){
-            if(order.type == Type.PENDING) s += order + "\n";
+            if(order.getType() != Type.ACCEPTED) s += order + "\n";
         }
         return s;
     }
@@ -42,7 +48,7 @@ public class Executor extends Person implements Serializable {
     public String viewAcceptedOrders(){
         String s = "";
         for(Order order : orders){
-            if(order.type == Type.ACCEPTED && order.executor == this)
+            if(order.getType() == Type.ACCEPTED && order.getExecutor() == this)
                 s += order + "\n";
         }
         return s;
@@ -51,7 +57,7 @@ public class Executor extends Person implements Serializable {
     public String viewDoneOrders(){
         String s = "";
         for(Order order : orders){
-            if(order.type == Type.DONE && order.executor == this){
+            if(order.getType() == Type.DONE && order.getExecutor() == this){
                 s += order + "\n";
             }
         }

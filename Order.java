@@ -3,10 +3,10 @@ package com.company;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-    Executor executor;
-    String message;
-    Type type;
-    Teacher sender;
+    private Executor executor;
+    private String message;
+    private Type type;
+    private Teacher sender;
 
     public Order(Teacher sender, String message) {
         this.sender = sender;
@@ -33,6 +33,10 @@ public class Order implements Serializable {
 
     public void reject(){
         type = Type.REJECTED;
+    }
+
+    public void execute(){
+        type = Type.DONE;
     }
 
     @Override
