@@ -1,12 +1,10 @@
 package com.company;
 
-import java.util.Scanner;
-
 public abstract class Employee extends Person implements Comparable<Employee> {
     protected double salary;
 
     public Employee(String login, String password, String name, double salary) {
-        super(name, password, name);
+        super(login, password, name);
         this.salary = salary;
     }
 
@@ -18,17 +16,6 @@ public abstract class Employee extends Person implements Comparable<Employee> {
 
     public void setSalary(double salary) {
         this.salary = salary;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Employee employee = (Employee) o;
-
-        return Double.compare(employee.salary, salary) == 0;
     }
 
     @Override
