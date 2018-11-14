@@ -19,22 +19,28 @@ public class Manager extends Employee{
 
 
 
-    public void ViewInfoAboutStudents()
+    public String ViewInfoAboutStudents()
     {
+        String s = "";
         ArrayList<Student> students = getAllStudents();
         for(int i = 0; i < students.size(); i++)
         {
-            System.out.println(i+1 + " " + students.get(i).getName() + " " + students.get(i).getPassword());
+            s += i+1 + " " + students.get(i).getName() + " " + students.get(i).getPassword() + "\n";
         }
+        return s;
     }
-    public void ViewInfoAboutTeachers()
+    public String ViewInfoAboutTeachers()
     {
+        String s = "";
         ArrayList<Teacher> teachers = getAllTeachers();
         for(int i = 0; i < teachers.size(); i++)
         {
-            System.out.println(i+1 + " " + teachers.get(i).getName() + " " + teachers.get(i).getPassword());
+            s += i+1 + " " + teachers.get(i).getName() + " " + teachers.get(i).getPassword() + "\n";
         }
 
+        return s;
     }
+
+
 
 }

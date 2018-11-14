@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.nio.ReadOnlyBufferException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Executor extends Employee implements Serializable {
     static private HashSet<Order> orders;
@@ -63,5 +64,19 @@ public class Executor extends Employee implements Serializable {
             }
         }
         return s;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Executor executor = (Executor) o;
+        return Objects.equals(rejectedOrders, executor.rejectedOrders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), rejectedOrders);
     }
 }
