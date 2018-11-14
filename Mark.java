@@ -6,7 +6,6 @@ public class Mark implements Serializable {
     private double fstAttestation;
     private double sndAttestation;
     private double finalExam;
-    private double totalMark;
 
     public Mark(){
         fstAttestation = 0;
@@ -27,7 +26,19 @@ public class Mark implements Serializable {
     }
 
     public double getTotal(){
-        return totalMark;
+        return fstAttestation + sndAttestation + finalExam;
+    }
+
+    public void setFstAttestation(double fstAttestation) {
+        this.fstAttestation = fstAttestation;
+    }
+
+    public void setSndAttestation(double sndAttestation) {
+        this.sndAttestation = sndAttestation;
+    }
+
+    public void setFinalExam(double finalExam) {
+        this.finalExam = finalExam;
     }
 
     private boolean retake(){
@@ -70,7 +81,7 @@ public class Mark implements Serializable {
                 "firstAttestation=" + fstAttestation +
                 ", secondAttestation=" + sndAttestation +
                 ", finalExam=" + finalExam +
-                ", total=" + totalMark +
+                ", total=" + getTotal() +
                 '}';
     }
 

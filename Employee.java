@@ -3,7 +3,7 @@ package com.company;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Employee extends Person implements Comparable, Serializable {
+public abstract class Employee extends Person implements Comparable, Serializable {
     protected double salary;
 
     public Employee(String login, String password, String name) {
