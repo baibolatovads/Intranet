@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class Person implements Serializable {
@@ -57,5 +58,8 @@ public abstract class Person implements Serializable {
        return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, password, id);
+    }
 }
