@@ -1,0 +1,5 @@
+package com.company;
+
+public enum Rank {
+    TUTOR, LECTOR, SENIOR_LECTOR, ASSISTANT_PROFESSOR, ASSOCIATE_PROFESSOR, PROFESSOR;
+}

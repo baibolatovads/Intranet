@@ -6,7 +6,6 @@ public class Mark implements Serializable {
     private double fstAttestation;
     private double sndAttestation;
     private double finalExam;
-    private double totalMark;
 
     public Mark(){
         fstAttestation = 0;
@@ -27,7 +26,19 @@ public class Mark implements Serializable {
     }
 
     public double getTotal(){
-        return totalMark;
+        return fstAttestation + sndAttestation + finalExam;
+    }
+
+    public void setFstAttestation(double fstAttestation) {
+        this.fstAttestation = fstAttestation;
+    }
+
+    public void setSndAttestation(double sndAttestation) {
+        this.sndAttestation = sndAttestation;
+    }
+
+    public void setFinalExam(double finalExam) {
+        this.finalExam = finalExam;
     }
 
     private boolean retake(){
@@ -37,16 +48,16 @@ public class Mark implements Serializable {
     public String toLetter(){
         if(retake()) return "F";
         if(getTotal() > 95) return "A";
-        else if (getTotal() > 90 && getTotal() < 95) return "-A";
-        else if (getTotal() > 85 && getTotal() < 90) return "+B";
-        else if (getTotal() > 80 && getTotal() < 85) return "B";
-        else if (getTotal() > 75 && getTotal() < 80) return "-B";
-        else if (getTotal() > 70 && getTotal() < 75) return "+C";
-        else if (getTotal() > 65 && getTotal() < 70) return "C";
-        else if (getTotal() > 60 && getTotal() < 65) return "-C";
-        else if (getTotal() > 55 && getTotal() < 60) return "D";
-        else if (getTotal() > 50 && getTotal() < 55) return "-D";
-        else return "FAIL";
+        if (getTotal() > 90 && getTotal() < 95) return "-A";
+        if (getTotal() > 85 && getTotal() < 90) return "+B";
+        if (getTotal() > 80 && getTotal() < 85) return "B";
+        if (getTotal() > 75 && getTotal() < 80) return "-B";
+        if (getTotal() > 70 && getTotal() < 75) return "+C";
+        if (getTotal() > 65 && getTotal() < 70) return "C";
+        if (getTotal() > 60 && getTotal() < 65) return "-C";
+        if (getTotal() > 55 && getTotal() < 60) return "D";
+        if (getTotal() > 50 && getTotal() < 55) return "-D";
+        return "FAIL";
     }
 
     public double toNumber() {
@@ -70,7 +81,7 @@ public class Mark implements Serializable {
                 "firstAttestation=" + fstAttestation +
                 ", secondAttestation=" + sndAttestation +
                 ", finalExam=" + finalExam +
-                ", total=" + totalMark +
+                ", total=" + getTotal() +
                 '}';
     }
 

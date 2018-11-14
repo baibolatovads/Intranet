@@ -1,12 +1,12 @@
 package com.company;
 
-
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+
         Person person = new Person();
         /*Scanner sc = new Scanner(System.in);
         person.setName(sc.nextLine());

@@ -1,5 +1,5 @@
 package com.company;
 
 public enum Type {
-    ACCEPTED, REJECTED, PENDING
+    ACCEPTED, REJECTED, PENDING, DONE;
 }

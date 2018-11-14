@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
-public class Course {
+public class Course implements Serializable{
     private String name, id;
     private Teacher teacher;
     HashSet<Student> students;
     HashSet<Course> prerequisites;
-    CourseFile courseFiles;
+    HashSet<CourseFile> courseFiles;
     int creditsNumber;
     Faculty faculty;
 
@@ -65,11 +65,11 @@ public class Course {
         this.prerequisites.add(c);
     }
 
-    public CourseFile getCourseFiles() {
+    public HashSet<CourseFile> getCourseFiles() {
         return courseFiles;
     }
 
-    public void setCourseFiles(CourseFile courseFiles) {
+    public void setCourseFiles(HashSet<CourseFile> courseFiles) {
         this.courseFiles = courseFiles;
     }
 

@@ -1,18 +1,21 @@
 package com.company;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class Person implements Serializable {
-    public String name;
-    public String password;
-    public String id;
+public abstract class Person implements Serializable, Interactive {
+    protected String name;
+    protected String password;
+    protected String id;
+    protected String login;
 
     public Person(){}
-    public Person(String name, String password, String id){
+    public Person(String name, String password, String id, String login){
         this.name = name;
         this.password = password;
         this.id = id;
+        this.login = login;
     }
 
     public String getName() {
@@ -39,6 +42,14 @@ public abstract class Person implements Serializable {
         return id;
     }
 
+    public String getLogin(){
+        return login;
+    }
+
+    public String setLogin(String login){
+        this.login = login;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -57,5 +68,19 @@ public abstract class Person implements Serializable {
        return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, password, id);
+    }
 
+    @Override
+    public void login() {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Welcome!");
+        System.out.println("Enter name: ");
+        name = s.next();
+        System.out.println("Enter password: ");
+        password = s.next();
+    }
 }

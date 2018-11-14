@@ -1,9 +1,12 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Scanner;
 
-public class Student extends Person{
+public class Student extends Person implements Serializable, Comparable, Interactive {
     //working on it
     private double gpa;
     private Faculty faculty;
@@ -15,8 +18,8 @@ public class Student extends Person{
 
     public Student(){}
 
-    public Student(String name, String id, String password, Double gpa, Faculty faculty){
-        super(name, id, password);
+    public Student(String login, String name, String id, String password, Double gpa, Faculty faculty){
+        super(name, password, id, login);
         this.gpa = gpa;
         this.faculty = faculty;
     }
@@ -29,7 +32,7 @@ public class Student extends Person{
         return current;
     }
 
-    public CourseFile getCourseFile(Course c){
+    public HashSet<CourseFile> getCourseFile(Course c){
         return c.getCourseFiles();
     }
     public HashMap<Course, Mark> getMarks(){
@@ -38,20 +41,35 @@ public class Student extends Person{
 
     public Mark getMark(Course c){
         if(!getMarks().containsKey(c)){
-            marks.put(c, new Mark);
+            marks.put(c, null);
         }
         return marks.get(c);
     }
 
-    public void viewTeacher(Course c){
-        Teacher t = с.getTeacher();
-        System.out.println(t.toString());
+
+    public void setMark(Mark m, Course c){
+        if(!getMarks().containsKey(c)){
+            marks.put(c, m);
+        }
+        marks.replace(c, m);
     }
 
-    public void viewCourses(){
+    public String viewTeacher(Course c){
+        Teacher t = c.getTeacher();
+        return t + "\n";
+    }
+
+    public String viewCourses(){
+        String s = "";
         for(Course c : current){
-            System.out.println(c.toString());
+            s += c + "\n";
         }
+        return s;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gpa, faculty, current, passed, teachers, registration, marks);
     }
 
     public void setTeacher(Course course, Teacher teacher){
@@ -85,4 +103,34 @@ public class Student extends Person{
         return (gpa == student.gpa && faculty == student.faculty && current.equals(student.current)
                 && passed.equals(student.passed) && marks.equals(student.marks) && teachers.equals(student.teachers));
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                ", faculty=" + faculty +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Student s = (Student)o;
+
+        if(gpa > s.gpa) return 1;
+        if(gpa == s.gpa) return 0;
+        return -1;
+    }
+
+    @Override
+    public void login() {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Welcome Student!");
+        System.out.println("Enter name: ");
+        name = s.next();
+        System.out.println("Enter password: ");
+        password = s.next();
+    }
+    
 }
