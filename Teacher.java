@@ -72,4 +72,14 @@ public class Teacher extends Employee implements Serializable {
     public void sendOrders(Order order){
         Executor.addOrder(order);
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "rank=" + rank +
+                ", courses=" + courses +
+                ", salary=" + salary +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

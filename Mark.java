@@ -48,16 +48,16 @@ public class Mark implements Serializable {
     public String toLetter(){
         if(retake()) return "F";
         if(getTotal() > 95) return "A";
-        else if (getTotal() > 90 && getTotal() < 95) return "-A";
-        else if (getTotal() > 85 && getTotal() < 90) return "+B";
-        else if (getTotal() > 80 && getTotal() < 85) return "B";
-        else if (getTotal() > 75 && getTotal() < 80) return "-B";
-        else if (getTotal() > 70 && getTotal() < 75) return "+C";
-        else if (getTotal() > 65 && getTotal() < 70) return "C";
-        else if (getTotal() > 60 && getTotal() < 65) return "-C";
-        else if (getTotal() > 55 && getTotal() < 60) return "D";
-        else if (getTotal() > 50 && getTotal() < 55) return "-D";
-        else return "FAIL";
+        if (getTotal() > 90 && getTotal() < 95) return "-A";
+        if (getTotal() > 85 && getTotal() < 90) return "+B";
+        if (getTotal() > 80 && getTotal() < 85) return "B";
+        if (getTotal() > 75 && getTotal() < 80) return "-B";
+        if (getTotal() > 70 && getTotal() < 75) return "+C";
+        if (getTotal() > 65 && getTotal() < 70) return "C";
+        if (getTotal() > 60 && getTotal() < 65) return "-C";
+        if (getTotal() > 55 && getTotal() < 60) return "D";
+        if (getTotal() > 50 && getTotal() < 55) return "-D";
+        return "FAIL";
     }
 
     public double toNumber() {
