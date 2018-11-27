@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Controller2 {
+public class Controller {
     private Person user = null;
     private HashSet<Person> users;
-    private final String path = "C:\\Users\\User_PC\\Desktop\\OOP Foulder1\\Intranet\\src\\com\\company\\files\\";
+        private final String path = "C:\\Users\\User_PC\\Desktop\\OOP Foulder1\\Intranet\\src\\com\\company\\files\\";
     private ObjectOutputStream output;
     private ObjectInputStream input;
 

@@ -1,13 +1,11 @@
 package com.company;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
 
-        Controller2 controller2 = new Controller2();
+        Controller controller2 = new Controller();
         controller2.run();
     }
 }

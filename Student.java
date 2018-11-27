@@ -21,8 +21,8 @@ public class Student extends Person implements Serializable, Comparable, Interac
     public Student(String name, String login){
         super(name, login);
     }
-    public Student(String login, String name, String id, String password, Double gpa, Faculty faculty){
-        super(name, password, id, login);
+    public Student(String name, String login, String password, String id, Double gpa, Faculty faculty){
+        super(name, login, password, id);
         this.gpa = gpa;
         this.faculty = faculty;
     }

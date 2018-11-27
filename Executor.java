@@ -17,8 +17,8 @@ public class Executor extends Employee implements Serializable, Interactive {
     public Executor(String name, String login){
         super(name, login);
     }
-    public Executor(String name, String password, String id, String login, double salary) {
-        super(name, password, id, login, salary);
+    public Executor(String name, String login, String password, String id, double salary) {
+        super(name, login, password, id, salary);
     }
 
     public static void addOrder(Order order){
