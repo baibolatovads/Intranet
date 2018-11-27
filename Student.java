@@ -149,10 +149,10 @@ public class Student extends Person implements Serializable, Comparable, Interac
         String ans = sc.nextLine();
         switch (ans) {
             case "1":
-                showCourses(Mode.Student);
+                showCourses();
                 break;
             case "2":
-                studentTranscript();
+                StudentTranscript();
                 break;
             case "3":
                 studentRegistration();
@@ -163,7 +163,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         }
     }
 
-    private void showCourses(Mode mode){
+    private void showCourses(){
         String ans = "";
 
         while(!ans.equals("exit")){
@@ -180,7 +180,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
                 ind--;
 
                 if(ind > -1 && ind < current.size()){
-                   studentCourse(ind);
+                   StudentCourse(ind);
                 }
                 else {
                     System.out.println("Wrong selection");
@@ -199,17 +199,37 @@ public class Student extends Person implements Serializable, Comparable, Interac
             System.out.println("1. Show Marks");
             System.out.println("2. Show Course Files");
             System.out.println("3. Show Course Info");
-            System.out.println("4. Show Teachers` Info");
 
             ans = sc.nextLine();
 
             switch(ans){
                 case "1":
-                    getMark(как передать курс?);
+                    System.out.println("This is your mark for current course:\n");
+                    getMark(current.get(ind));
                     break;
                 case "2":
-
+                    "Course Files:\n"
+                    current.get(ind).getCourseFiles();
+                    break;
+                case "3":
+                    "Course Info Section:\n"
+                    current.get(ind).toString();
+                    break;
             }
         }
+    }
+
+    private void StudentTranscript(){
+        System.out.println("Transcript:\n");
+            getMarks();
+    }
+
+    private void studentRegistration(){
+
+    }
+
+    private void studentInfo(){
+        System.out.println("Student Info Section\n");
+        student.toString();
     }
 }
