@@ -1,20 +1,20 @@
 package com.company;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Student extends Person implements Serializable, Comparable, Interactive {
     //working on it
     private double gpa;
     private Faculty faculty;
-    private HashSet<Course> current = new HashSet<>();
+    private ArrayList<Course> current = new HashSet<>();
     private HashSet<Course> passed = new HashSet<>();
     private HashMap<Course, Teacher> teachers = new HashMap<>();
     private Registration registration = new Registration();
     private HashMap<Course, Mark> marks = new HashMap<>();
+    private Student student;
+    private Person person;
+    private Mode mode;
 
     public Student(){}
 
@@ -24,6 +24,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         this.faculty = faculty;
     }
 
+    private static final Scanner sc = new Scanner(System.in);
     public void registerForACourse(Course c){
         registration.addRegistration(new Registration(this, c, Type.PENDING));
     }
@@ -132,5 +133,83 @@ public class Student extends Person implements Serializable, Comparable, Interac
         System.out.println("Enter password: ");
         password = s.next();
     }
-    
+
+    public void session(){
+        student = (Student) person;
+
+        mode = Mode.Student;
+        System.out.println("You are logged as student!");
+
+        System.out.println("Choose the option you want");
+        System.out.println("1. Courses");
+        System.out.println("2. Transcript");
+        System.out.println("3. Registration");
+        System.out.println("4. Edit Info");
+
+        String ans = sc.nextLine();
+        switch (ans) {
+            case "1":
+                showCourses(Mode.Student);
+                break;
+            case "2":
+                studentTranscript();
+                break;
+            case "3":
+                studentRegistration();
+                break;
+            case "4":
+                studentInfo();
+                break;
+        }
+    }
+
+    private void showCourses(Mode mode){
+        String ans = "";
+
+        while(!ans.equals("exit")){
+            System.out.println("Your courses: \n");
+            for(int i = 0; i < current.size(); ++i){
+                System.out.println((i + 1) + ". " + current.get(i).getName());
+            }
+
+            System.out.println("Select course");
+            ans = sc.nextLine();
+
+            try{
+                int ind = Integer.decode(ans);
+                ind--;
+
+                if(ind > -1 && ind < current.size()){
+                   studentCourse(ind);
+                }
+                else {
+                    System.out.println("Wrong selection");
+                }
+            }
+            catch(Exception e){
+                System.out.println("Wrong selection");
+            }
+        }
+    }
+
+    private void StudentCourse(int ind){
+        String ans = "";
+        while(!ans.equals("exit")){
+            System.out.println("Choose option:\n");
+            System.out.println("1. Show Marks");
+            System.out.println("2. Show Course Files");
+            System.out.println("3. Show Course Info");
+            System.out.println("4. Show Teachers` Info");
+
+            ans = sc.nextLine();
+
+            switch(ans){
+                case "1":
+                    getMark(как передать курс?);
+                    break;
+                case "2":
+
+            }
+        }
+    }
 }

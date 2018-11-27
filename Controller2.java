@@ -45,7 +45,7 @@ public class Controller2 {
 
     private void findUser(String login, String password){
         for(Person u : users){
-            if(u.login == login){
+            if(u.login.equals(login)){
                 user = u;
             }
         }
