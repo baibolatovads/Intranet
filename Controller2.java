@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -10,6 +11,14 @@ public class Controller2 {
     private final String path = "src/com/company/files/";
     private ObjectOutputStream output;
     private ObjectInputStream input;
+
+    public static ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+    public static ArrayList<Manager> managers = new ArrayList<Manager>();
+    public static ArrayList<Executor> executors = new ArrayList<Executor>();
+
+    public static ArrayList<Student> students = new ArrayList<Student>();
+
+    public static ArrayList<Course> courses = new ArrayList<Course>();
 
     private void init(){
         try {

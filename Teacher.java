@@ -12,6 +12,9 @@ public class Teacher extends Employee implements Serializable {
         this.courses = courses;
     }
 
+    public Teacher(String name, String login){
+        super(name, login);
+    }
     public Teacher(String name, String login, String password, String id, Rank rank, HashSet<Course> courses) {
         super(name, login, password, id);
         this.rank = rank;

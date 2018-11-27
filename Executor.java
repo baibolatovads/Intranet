@@ -14,6 +14,9 @@ public class Executor extends Employee implements Serializable {
 
     }
 
+    public Executor(String name, String login){
+        super(name, login);
+    }
     public Executor(String name, String password, String id, String login, double salary) {
         super(name, password, id, login, salary);
     }

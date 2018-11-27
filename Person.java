@@ -14,6 +14,10 @@ public abstract class Person implements Serializable, Interactive {
     public Person(){
         password = defaultPassword;
     }
+    public Person(String name, String login){
+        this.name = name;
+        this.login = login;
+    }
     public Person(String name, String login, String password, String id){
         this.name = name;
         this.password = password;

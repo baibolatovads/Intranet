@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Manager extends Employee{
     public Manager()
     { }
+
+    public Manager(String name, String login){
+        super(name, login);
+    }
     public Manager(String name, String password, String id, String login, double salary)
     {
         super(name,password,id, login,salary);
