@@ -102,12 +102,9 @@ public class Controller {
                 studentTranscript();
                 break;
             case "3":
-                showNews();
-                break;
-            case "4":
                 studentRegistration();
                 break;
-            case "5":
+            case "4":
                 studentInfo();
                 break;
         }
