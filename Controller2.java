@@ -59,10 +59,10 @@ public class Controller2 {
             }
         }
         if(user == null){
-            throw LoginNotFoundException;
+            System.out.println("User is not found");
         }
         if(user.password != password){
-            throw InvalidPasswordException;
+            System.out.println("Invalid Password");
         }
     }
 }

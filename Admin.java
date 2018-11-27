@@ -24,8 +24,6 @@ public class Admin extends Employee implements Interactive {
     }
 
 
-    Scanner scanner = new Scanner(System.in);
-
     public Admin() {
     }
 
@@ -103,8 +101,8 @@ public class Admin extends Employee implements Interactive {
     private void addExecutor(String name, String newLogin) {
         Executor executor = new Executor(name, newLogin);
 
-        if (!Controller.executors.contains(executor)) {
-            Controller.executors.add(executor);
+        if (!Controller2.executors.contains(executor)) {
+            Controller2.executors.add(executor);
         }
         else {
             System.out.println(executor.getClass().toString().split(" ")[1] + " already exists!");
@@ -114,8 +112,8 @@ public class Admin extends Employee implements Interactive {
     private void addManager(String name, String newLogin) {
         Manager manager = new Manager(name, newLogin);
 
-        if (!Controller.managers.contains(manager)) {
-            Controller.managers.add(manager);
+        if (!Controller2.managers.contains(manager)) {
+            Controller2.managers.add(manager);
         }
         else {
             System.out.println(manager.getClass().toString().split(" ")[1] + " already exists!");
@@ -125,8 +123,8 @@ public class Admin extends Employee implements Interactive {
     private void addTeacher( String name, String newLogin) {
         Teacher teacher = new Teacher( name, newLogin);
 
-        if (!Controller.teachers.contains(teacher)) {
-            Controller.teachers.add(teacher);
+        if (!Controller2.teachers.contains(teacher)) {
+            Controller2.teachers.add(teacher);
         }
         else {
             System.out.println(teacher.getClass().toString().split(" ")[1] + " already exists!");
@@ -136,8 +134,8 @@ public class Admin extends Employee implements Interactive {
     private void addStudent(String name, String newLogin) {
         Student student = new Student( name, newLogin);
 
-        if (!Controller.students.contains(student)) {
-            Controller.students.add(student);
+        if (!Controller2.students.contains(student)) {
+            Controller2.students.add(student);
         }
         else {
             System.out.println(student.getClass().toString().split(" ")[1] + " already exists!");
@@ -202,31 +200,31 @@ public class Admin extends Employee implements Interactive {
     }
 
     public boolean deleteUser(String login) {
-        for (Person u: Controller.students) {
+        for (Person u: Controller2.students) {
             if (u.getLogin().equals(login)) {
-                Controller.students.remove(u);
+                Controller2.students.remove(u);
 
                 return true;
             }
         }
-        for (Person u: Controller.managers) {
+        for (Person u: Controller2.managers) {
             if (u.getLogin().equals(login)) {
-                Controller.managers.remove(u);
+                Controller2.managers.remove(u);
 
                 return true;
             }
         }
 
-        for (Person u: Controller.executors) {
+        for (Person u: Controller2.executors) {
             if (u.getLogin().equals(login)) {
-                Controller.executors.remove(u);
+                Controller2.executors.remove(u);
 
                 return true;
             }
         }
-        for (Person u: Controller.teachers) {
+        for (Person u: Controller2.teachers) {
             if (u.getLogin().equals(login)) {
-                Controller.teachers.remove(u);
+                Controller2.teachers.remove(u);
 
                 return true;
             }
