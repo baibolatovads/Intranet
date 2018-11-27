@@ -9,8 +9,11 @@ public abstract class Person implements Serializable, Interactive {
     protected String password;
     protected String id;
     protected String login;
+    protected static String defaultPassword = "Kbtu111";
 
-    public Person(){}
+    public Person(){
+        password = defaultPassword;
+    }
     public Person(String name, String password, String id, String login){
         this.name = name;
         this.password = password;
