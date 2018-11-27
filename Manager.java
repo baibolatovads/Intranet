@@ -1,10 +1,15 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Manager extends Employee{
+public class Manager extends Employee implements Comparable, Serializable, Interactive{
     public Manager()
     { }
+
+    public Manager(String name, String login){
+        super(name, login);
+    }
     public Manager(String name, String password, String id, String login, double salary)
     {
         super(name,password,id, login,salary);
@@ -41,6 +46,6 @@ public class Manager extends Employee{
         return s;
     }
 
-
+    public void session(){}
 
 }

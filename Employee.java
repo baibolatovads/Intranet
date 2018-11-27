@@ -7,6 +7,9 @@ import java.util.Scanner;
 public abstract class Employee extends Person implements Comparable, Serializable, Interactive {
     protected double salary;
 
+    public Employee(String name, String login){
+        super(name, login);
+    }
     public Employee(String login, String password, String name, String id) {
         super(login, password, name, id);
     }
@@ -57,7 +60,7 @@ public abstract class Employee extends Person implements Comparable, Serializabl
         return -1;
     }
 
-    @Override
+
     public void login() {
         Scanner s = new Scanner(System.in);
 
@@ -67,4 +70,6 @@ public abstract class Employee extends Person implements Comparable, Serializabl
         System.out.println("Enter password: ");
         password = s.next();
     }
+
+    public void session(){}
 }

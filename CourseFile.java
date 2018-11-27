@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,13 +8,15 @@ public class CourseFile implements Serializable {
     private String title;
     private String description;
     private Date addDate;
+    private int id;
 
     public CourseFile(){}
 
-    public CourseFile(String title, String description){
+    public CourseFile(String title, String description, int id){
         this.title = title;
         this.description = description;
         this.addDate = new Date();
+        this.id = id;
     }
 
     @Override
@@ -56,7 +59,7 @@ public class CourseFile implements Serializable {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
-        this.addDate = addDate;
+    public int getId(){
+        return id;
     }
 }

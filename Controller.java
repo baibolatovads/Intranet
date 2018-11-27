@@ -1,112 +1,103 @@
 package com.company;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Controller {
-    private Mode mode;
-    private Person person;
-    private Student student;
-    private Manager manager;
-    private Executor executor;
-    private Admin admin;
-    private ArrayList<Course> curCourses;
-
-    private static final Scanner sc = new Scanner(System.in);
-    private static final String EXCEPT_CLASS = "Class not found!";
-    private static final String EXCEPT_FILE = "File not found!";
-    private static final String EXCEPT_IO = "Input / Output exception!";
+    private static Person user = null;
+    private static HashSet<Person> users = new HashSet<>();
+    private static final String path = "src\\com\\company\\files\\";
+    private static ObjectOutputStream output;
+    private static ObjectInputStream input;
 
     public static ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     public static ArrayList<Manager> managers = new ArrayList<Manager>();
-    public static ArrayList<Admin> admins = new ArrayList<Admin>();
     public static ArrayList<Executor> executors = new ArrayList<Executor>();
 
     public static ArrayList<Student> students = new ArrayList<Student>();
 
     public static ArrayList<Course> courses = new ArrayList<Course>();
 
-    public void begin(){
-        System.out.println("Welcome to Intranet!\nAre you enter as admin or user?");
-        String answer = sc.nextLine().toLowerCase();
-        if(!(answer.equals("user") || answer.equals("admin"))) return;
-        System.out.println("Enter login and password:\n");
+    public static void initialSerialization(){
+        Admin admin1 = new Admin("Abzal Myrzash", "1111", "17BD01", "a_myrzash", 500000);
+        Admin admin2 = new Admin("Dariya Baibolatova", "2222", "17BD02", "d_baibolatova", 500000);
+        Admin admin3 = new Admin("Shynar Ayanbek", "3333", "17BD03", "sh_ayanbek", 500000);
+
+        Manager m = new Manager("Bob Bob", "mngr", "mngr", "b_bob", 300000);
+        HashSet<Course> c = new HashSet<>();
+        c.add(new Course("Calculus", "MATH1204", 4, Faculty.FIT));
+        Teacher t = new Teacher("Fuad Gadzhiev", "f_gadzhiev", "tchr", "tchr", Rank.PROFESSOR, c);
+
+        Student s1 = new Student("s_steve", "Steve Steve", "std1", "std1", 3.0, Faculty.BS);
+        Student s2 = new Student("s_syroezhkin", "Sergei Syroezhkin", "std2", "std2", 4.0, Faculty.FIT);
+
+        Executor ex = new Executor("Alex Alex", "exec", "exec", "a_alex", 200000);
+
+
+        users.add(admin1);
+        users.add(admin2);
+        users.add(admin3);
+        users.add(m);
+        users.add(t);
+        users.add(s1);
+        users.add(s2);
+        users.add(ex);
+
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(path + "users.ser"));
+            output.writeObject(users);
+            output.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void init(){
+        try {
+            input = new ObjectInputStream(new FileInputStream(path + "users.ser"));
+            output = new ObjectOutputStream(new FileOutputStream(path + "users.ser"));
+
+            users = (HashSet<Person>)input.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void run(){
+        Scanner sc = new Scanner(System.in);
+
+        init();
+
+
+        System.out.println("Welcome to Intranet!\n");
+
+        System.out.print("Login: ");
         String login = sc.nextLine().toLowerCase();
+
+        System.out.print("Password: ");
         String password = sc.nextLine();
 
-        switch (answer){
-            case "admin":
-                sessionAdmin(login, password);
-                break;
-            case "user":
-                sessionUser(login, password);
-                break;
-        }
-    saveData();
+        findUser(login, password);
+
+        user.session();
     }
 
-    private void sessionUser(String login, String password){
-        ArrayList<Person> list = new ArrayList<>();
-        boolean found = false;
-
-        list.addAll(teachers);
-        list.addAll(students);
-        list.addAll(managers);
-        list.addAll(executors);
-
-        for(Person p: list){
-            if(p.getLogin().equals(login) && p.getPassword().equals(password)){
-                person = p;
-                found = true;
-
-                switch (p.getClass().toString().split(" ")[1]){
-                    case "Student":
-                        sessionStudent();
-                        break;
-                    case "Teacher":
-                        sessionTeacher();
-                        break;
-                    case "Manager":
-                        sessionManager();
-                        break;
-                    case "Executor":
-                        sessionExecutor();
-                        break;
-
-                }
-                break;
+    private static void findUser(String login, String password){
+        for(Person u : users){
+            if(u.login.equals(login)){
+                user = u;
             }
         }
-        if(!found){
-            System.out.println("Invalid login or password!\n"); //exception place
+        if(user == null){
+            System.out.println("User is not found");
         }
-    }
-
-    private void sessionStudent(){
-        student = (Student)person;
-        mode = Mode.Student;
-        System.out.println("You are logged as student!");
-
-        System.out.println("Choose the option you want");
-        System.out.println("1. Courses");
-        System.out.println("2. Transcript");
-        System.out.println("3. Registration");
-        System.out.println("4. Edit Info");
-
-        String ans = sc.nextLine();
-        switch (ans) {
-            case "1":
-                showCourses(Mode.STUDENT);
-                break;
-            case "2":
-                studentTranscript();
-                break;
-            case "3":
-                studentRegistration();
-                break;
-            case "4":
-                studentInfo();
-                break;
+        if(user.password != password){
+            System.out.println("Invalid Password");
         }
     }
 }
