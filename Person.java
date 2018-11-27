@@ -14,7 +14,7 @@ public abstract class Person implements Serializable, Interactive {
     public Person(){
         password = defaultPassword;
     }
-    public Person(String name, String password, String id, String login){
+    public Person(String name, String login, String password, String id){
         this.name = name;
         this.password = password;
         this.id = id;
@@ -49,7 +49,7 @@ public abstract class Person implements Serializable, Interactive {
         return login;
     }
 
-    public String setLogin(String login){
+    public void setLogin(String login){
         this.login = login;
     }
 
@@ -74,16 +74,5 @@ public abstract class Person implements Serializable, Interactive {
     @Override
     public int hashCode() {
         return Objects.hash(name, password, id);
-    }
-
-    @Override
-    public void login() {
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("Welcome!");
-        System.out.println("Enter name: ");
-        name = s.next();
-        System.out.println("Enter password: ");
-        password = s.next();
     }
 }

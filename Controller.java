@@ -67,7 +67,7 @@ public class Controller {
                         sessionTeacher();
                         break;
                     case "Manager":
-                        sessionManager():
+                        sessionManager();
                         break;
                     case "Executor":
                         sessionExecutor();

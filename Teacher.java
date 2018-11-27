@@ -12,8 +12,8 @@ public class Teacher extends Employee implements Serializable {
         this.courses = courses;
     }
 
-    public Teacher(String name, String password, String id, Rank rank, HashSet<Course> courses) {
-        super(name, password, id);
+    public Teacher(String name, String login, String password, String id, Rank rank, HashSet<Course> courses) {
+        super(name, login, password, id);
         this.rank = rank;
         this.courses = courses;
     }
@@ -81,5 +81,9 @@ public class Teacher extends Employee implements Serializable {
                 ", salary=" + salary +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void session(){
+
     }
 }
