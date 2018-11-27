@@ -7,7 +7,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
     //working on it
     private double gpa;
     private Faculty faculty;
-    private ArrayList<Course> current = new HashSet<>();
+    private ArrayList<Course> current = new ArrayList<>();
     private HashSet<Course> passed = new HashSet<>();
     private HashMap<Course, Teacher> teachers = new HashMap<>();
     private Registration registration = new Registration();
@@ -126,7 +126,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         return -1;
     }
 
-    @Override
+
     public void login() {
         Scanner s = new Scanner(System.in);
 
@@ -211,11 +211,11 @@ public class Student extends Person implements Serializable, Comparable, Interac
                     getMark(current.get(ind));
                     break;
                 case "2":
-                    "Course Files:\n"
+                    System.out.println("Course Files:\n");
                     current.get(ind).getCourseFiles();
                     break;
                 case "3":
-                    "Course Info Section:\n"
+                    System.out.println("Course Info Section:\n");
                     current.get(ind).toString();
                     break;
             }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Executor extends Employee implements Serializable {
+public class Executor extends Employee implements Serializable, Interactive {
     static private HashSet<Order> orders;
     private HashSet<Order> rejectedOrders;
 
@@ -82,4 +82,6 @@ public class Executor extends Employee implements Serializable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), rejectedOrders);
     }
+
+    public void session(){}
 }

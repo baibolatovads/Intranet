@@ -60,7 +60,7 @@ public abstract class Employee extends Person implements Comparable, Serializabl
         return -1;
     }
 
-    @Override
+
     public void login() {
         Scanner s = new Scanner(System.in);
 
@@ -70,4 +70,6 @@ public abstract class Employee extends Person implements Comparable, Serializabl
         System.out.println("Enter password: ");
         password = s.next();
     }
+
+    public void session(){}
 }
