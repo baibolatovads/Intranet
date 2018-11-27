@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Controller2 {
     private Person user = null;
     private HashSet<Person> users;
-    private final String path = "src/com/company/files/";
+    private final String path = "C:\\Users\\User_PC\\Desktop\\OOP Foulder1\\Intranet\\src\\com\\company\\files\\";
     private ObjectOutputStream output;
     private ObjectInputStream input;
 
@@ -22,8 +22,8 @@ public class Controller2 {
 
     private void init(){
         try {
-            input = new ObjectInputStream(new FileInputStream(path + "users.ser"));
-            output = new ObjectOutputStream(new FileOutputStream(path + "users.ser"));
+            input = new ObjectInputStream(new FileInputStream(path + "users.txt"));
+            output = new ObjectOutputStream(new FileOutputStream(path + "users.txt"));
 
             users = (HashSet<Person>)input.readObject();
         } catch (IOException e) {
