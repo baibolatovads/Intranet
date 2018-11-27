@@ -29,7 +29,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         registration.addRegistration(new Registration(this, c, Type.PENDING));
     }
 
-    public HashSet<Course> getCourses(){
+    public ArrayList<Course> getCourses(){
         return current;
     }
 
