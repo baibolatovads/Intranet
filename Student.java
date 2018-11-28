@@ -18,8 +18,8 @@ public class Student extends Person implements Serializable, Comparable, Interac
 
     public Student(){}
 
-    public Student(String name, String login){
-        super(name, login);
+    public Student(String name, String login, String password){
+        super(name, login, password);
     }
     public Student(String name, String login, String password, String id, Double gpa, Faculty faculty){
         super(name, login, password, id);
@@ -147,8 +147,8 @@ public class Student extends Person implements Serializable, Comparable, Interac
         System.out.println("1. Courses");
         System.out.println("2. Transcript");
         System.out.println("3. Registration");
-        System.out.println("4. Edit Info");
-
+        System.out.println("4. Student Info");
+        System.out.println("5. Exit");
         String ans = sc.nextLine();
         switch (ans) {
             case "1":
@@ -202,6 +202,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
             System.out.println("1. Show Marks");
             System.out.println("2. Show Course Files");
             System.out.println("3. Show Course Info");
+            System.out.println("4. Show Teachers");
 
             ans = sc.nextLine();
 
@@ -218,6 +219,9 @@ public class Student extends Person implements Serializable, Comparable, Interac
                     System.out.println("Course Info Section:\n");
                     current.get(ind).toString();
                     break;
+                case "4":
+                    System.out.println("Teacher of the course is: ");
+                    viewTeacher(current.get(ind));
             }
         }
     }

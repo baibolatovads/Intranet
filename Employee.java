@@ -7,8 +7,8 @@ import java.util.Scanner;
 public abstract class Employee extends Person implements Comparable, Serializable, Interactive {
     protected double salary;
 
-    public Employee(String name, String login){
-        super(name, login);
+    public Employee(String name, String login, String password){
+        super(name, login, password);
     }
     public Employee(String name, String login, String password, String id) {
         super(name, login, password, id);

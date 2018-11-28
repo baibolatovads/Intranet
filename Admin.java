@@ -12,21 +12,23 @@ public class Admin extends Employee implements Interactive {
     private Admin admin;
     private static final Scanner sc = new Scanner(System.in);
 
-
-    private final String PATH = "src/com/company/files/";
+    private Person person;
+    private static final String PATH = "src/com/company/files/";
     private static final String LOG = "log.txt";
+    private static final String FILE = "admin.txt";
     private static final String EXCEPT_IO = "Input / Output exception!";
 
     public enum UserType {
         TEACHER, STUDENT, MANAGER;
     }
 
-
-    public Admin() {
+    public Admin(){
+        getData();
     }
 
-    public Admin(String name, String login){
-        super(name, login);
+
+    public Admin(String name, String login, String password){
+        super(name, login, password);
     }
 
 
@@ -79,67 +81,67 @@ public class Admin extends Employee implements Interactive {
             return '#';
     }
 
-    public void addUser(String name, String newLogin, Mode mode) {
+    public void addUser(String name, String newLogin, String password, Mode mode) {
         switch (mode) {
             case Student:
-                addStudent(name, newLogin);
+                addStudent(name, newLogin, password);
                 break;
             case Teacher:
-                addTeacher(name, newLogin);
+                addTeacher(name, newLogin, password);
                 break;
             case Manager:
-                addManager( name, newLogin);
+                addManager( name, newLogin, password);
                 break;
             case Executor:
-                addExecutor(name, newLogin);
+                addExecutor(name, newLogin, password);
                 break;
         }
     }
 
-    private void addExecutor(String name, String newLogin) {
-        Executor executor = new Executor(name, newLogin);
+    private void addExecutor(String name, String newLogin, String password) {
+        Executor executor = new Executor(name, newLogin, password);
 
-        if (!Controller.executors.contains(executor)) {
-            Controller.executors.add(executor);
+        if (!Driver.executors.contains(executor)) {
+            Driver.executors.add(executor);
         }
         else {
             System.out.println(executor.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
-    private void addManager(String name, String newLogin) {
-        Manager manager = new Manager(name, newLogin);
+    private void addManager(String name, String newLogin, String password) {
+        Manager manager = new Manager(name, newLogin, password);
 
-        if (!Controller.managers.contains(manager)) {
-            Controller.managers.add(manager);
+        if (!Driver.managers.contains(manager)) {
+            Driver.managers.add(manager);
         }
         else {
             System.out.println(manager.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
-    private void addTeacher( String name, String newLogin) {
-        Teacher teacher = new Teacher( name, newLogin);
+    private void addTeacher( String name, String newLogin, String password) {
+        Teacher teacher = new Teacher( name, newLogin, password);
 
-        if (!Controller.teachers.contains(teacher)) {
-            Controller.teachers.add(teacher);
+        if (!Driver.teachers.contains(teacher)) {
+            Driver.teachers.add(teacher);
         }
         else {
             System.out.println(teacher.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
 
-    private void addStudent(String name, String newLogin) {
-        Student student = new Student( name, newLogin);
+    public void addStudent(String name, String newLogin, String password) {
+        Student student = new Student( name, newLogin, password);
 
-        if (!Controller.students.contains(student)) {
-            Controller.students.add(student);
+        if (!Driver.students.contains(student)) {
+            Driver.students.add(student);
         }
         else {
             System.out.println(student.getClass().toString().split(" ")[1] + " already exists!");
         }
     }
-    private void adminAdd() {
+   /* public void adminAdd() {
         while (true) {
             System.out.println("Whom you want to add?");
             System.out.println("1. Student");
@@ -179,12 +181,15 @@ public class Admin extends Employee implements Interactive {
 
             String login = sc.nextLine();
 
-            admin.addUser(name, login, mode);
+            System.out.println("Enter password");
+            String password = sc.nextLine();
+
+            admin.addUser(name, login, password, mode);
         }
 
-    }
+    }*/
 
-    private void adminRemove() {
+    public void adminRemove() {
         System.out.println("Enter user`s login you want to delete");
 
         String login = sc.nextLine();
@@ -198,31 +203,31 @@ public class Admin extends Employee implements Interactive {
     }
 
     public boolean deleteUser(String login) {
-        for (Person u: Controller.students) {
+        for (Person u: Driver.students) {
             if (u.getLogin().equals(login)) {
-                Controller.students.remove(u);
+                Driver.students.remove(u);
 
                 return true;
             }
         }
-        for (Person u: Controller.managers) {
+        for (Person u: Driver.managers) {
             if (u.getLogin().equals(login)) {
-                Controller.managers.remove(u);
+                Driver.managers.remove(u);
 
                 return true;
             }
         }
 
-        for (Person u: Controller.executors) {
+        for (Person u: Driver.executors) {
             if (u.getLogin().equals(login)) {
-                Controller.executors.remove(u);
+                Driver.executors.remove(u);
 
                 return true;
             }
         }
-        for (Person u: Controller.teachers) {
+        for (Person u: Driver.teachers) {
             if (u.getLogin().equals(login)) {
-                Controller.teachers.remove(u);
+                Driver.teachers.remove(u);
 
                 return true;
             }
@@ -231,7 +236,7 @@ public class Admin extends Employee implements Interactive {
         return false;
     }
 
-    private void adminLogs() {
+    public void adminLogs() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH + LOG));
 
@@ -248,7 +253,7 @@ public class Admin extends Employee implements Interactive {
         }
     }
 
-    public void session() {
+    /*public void session() {
         admin = new Admin();
         if (admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
             String ans = "";
@@ -282,6 +287,32 @@ public class Admin extends Employee implements Interactive {
             }
         } else {
             System.out.println("Invalid login or password!");
+        }
+    }*/
+
+    private void getData() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(PATH + FILE));
+
+            String firstLine = br.readLine();
+            String secondLine = br.readLine();
+
+            String r_login, r_password;
+
+            try {
+                r_login = firstLine.split(" ")[1];
+                r_password = secondLine.split(" ")[1];
+
+                login = r_login;
+                password = r_password;
+            }
+            catch (Exception e) {
+                System.out.println("Wrong data in " + FILE);
+            }
+
+        }
+        catch (IOException e) {
+            System.out.println("Cannot read from " + FILE);
         }
     }
 }

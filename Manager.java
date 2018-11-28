@@ -7,8 +7,8 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
     public Manager()
     { }
 
-    public Manager(String name, String login){
-        super(name, login);
+    public Manager(String name, String login, String password){
+        super(name, login, password);
     }
     public Manager(String name, String login, String password, String id, double salary) {
         super(name, login, password, id, salary);
@@ -45,6 +45,8 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
         return s;
     }
 
-    public void session(){}
+    public void session(){
+
+    }
 
 }

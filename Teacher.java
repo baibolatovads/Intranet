@@ -1,19 +1,24 @@
 package com.company;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Teacher extends Employee implements Serializable {
     private Rank rank;
     private HashSet<Course> courses;
+    private Teacher teacher;
+    private Mode mode;
+    private Person person;
+    private ArrayList<Course> curCourses;
 
     public Teacher(Rank rank, HashSet<Course> courses) {
         this.rank = rank;
         this.courses = courses;
     }
 
-    public Teacher(String name, String login){
-        super(name, login);
+    public Teacher(String name, String login, String password){
+        super(name, login, password);
     }
     public Teacher(String name, String login, String password, String id, Rank rank, HashSet<Course> courses) {
         super(name, login, password, id);
@@ -87,6 +92,9 @@ public class Teacher extends Employee implements Serializable {
     }
 
     public void session(){
+        teacher = (Teacher) person;
+        mode = Mode.Teacher;
+
 
     }
 }
