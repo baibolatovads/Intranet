@@ -234,7 +234,6 @@ public class Driver {
                     mode = Mode.Executor;
                     break;
                 case "exit":
-                    sessionAdmin(login1, password1);
                     return;
                 default:
                     System.out.println("Invalid option!");
