@@ -7,11 +7,13 @@ public class Order implements Serializable {
     private String message;
     private Type type;
     private Teacher sender;
+    private int id;
 
-    public Order(Teacher sender, String message) {
+    public Order(Teacher sender, String message, int id) {
         this.sender = sender;
         this.message = message;
         this.type = type.PENDING;
+        this.id = id;
     }
 
     public Teacher getSender() {
@@ -48,6 +50,7 @@ public class Order implements Serializable {
         return "Order{" +
                 ", message='" + message + '\'' +
                 ", type=" + type +
+                ", id='" + id + '\'' +
                 '}';
     }
 

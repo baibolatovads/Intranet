@@ -5,11 +5,15 @@ import java.nio.ReadOnlyBufferException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Executor extends Employee implements Serializable, Interactive {
     static private HashSet<Order> orders;
     private HashSet<Order> rejectedOrders;
-
+    Executor executor;
+    Mode mode;
+    Person person;
+    private static final Scanner sc = new Scanner(System.in);
     public Executor(){
 
     }
@@ -41,32 +45,27 @@ public class Executor extends Employee implements Serializable, Interactive {
         }
     }
 
-    public String viewNewOrders(){
-        String s = "";
+    public void viewNewOrders(){
         for(Order order : orders){
             if(order.getType() != Type.ACCEPTED
-                    && !rejectedOrders.contains(order)) s += order + "\n";
+                    && !rejectedOrders.contains(order))
+                System.out.println(order);
         }
-        return s;
     }
 
-    public String viewAcceptedOrders(){
-        String s = "";
+    public void viewAcceptedOrders(){
         for(Order order : orders){
             if(order.getType() == Type.ACCEPTED && order.getExecutor() == this)
-                s += order + "\n";
+                System.out.println(order);
         }
-        return s;
     }
 
-    public String viewExecutedOrders(){
-        String s = "";
+    public void viewExecutedOrders(){
         for(Order order : orders){
             if(order.getType() == Type.DONE && order.getExecutor() == this){
-                s += order + "\n";
+                System.out.println(order);
             }
         }
-        return s;
     }
 
     @Override
@@ -83,5 +82,43 @@ public class Executor extends Employee implements Serializable, Interactive {
         return Objects.hash(super.hashCode(), rejectedOrders);
     }
 
-    public void session(){}
+    public void session(){
+            executor = (Executor) person;
+            mode = Mode.Executor;
+
+            System.out.println("You are logged as a manager");
+
+            System.out.println("Choose option");
+            System.out.println("1. View new orders");
+            System.out.println("2. View executed orders");
+            System.out.println("3. View accepted orders");
+            System.out.println("4. Accept order");
+            System.out.println("5. Reject order");
+            System.out.println("6. Reject every non-accepted order");
+
+            String ans = sc.nextLine();
+
+            switch (ans){
+                case "1":
+                    executor.viewNewOrders();
+                    break;
+                case "2":
+                    executor.viewExecutedOrders();
+                    break;
+                case "3":
+                    executor.viewAcceptedOrders();
+                    break;
+                case "4":
+                    System.out.println("ID: ");
+
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                default:
+                    System.out.println("Invalid option!");
+            }
+        }
+
 }

@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Teacher extends Employee implements Serializable {
+public class Teacher extends Employee implements Serializable, Interactive {
     private Rank rank;
     private HashSet<Course> courses;
-    Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
-    private Teacher teacher;
-    private Mode mode;
-    private Person person;
     private ArrayList<Course> curCourses;
 
     public Teacher(Rank rank, HashSet<Course> courses) {
@@ -166,7 +163,11 @@ public class Teacher extends Employee implements Serializable {
         System.out.println("Message: ");
         String message = sc.nextLine();
 
-        Executor.addOrder(new Order(this, message));
+        System.out.println("ID (int): ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        Executor.addOrder(new Order(this, message, id));
     }
 
     @Override
@@ -223,8 +224,6 @@ public class Teacher extends Employee implements Serializable {
                     System.out.println("Command index is out of range!");
             }
         }
-        teacher = (Teacher) person;
-        mode = Mode.Teacher;
 
     }
 }

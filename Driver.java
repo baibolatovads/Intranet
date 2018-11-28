@@ -426,6 +426,7 @@ public class Driver {
         }
         catch (IOException e) {
             System.out.println(TEACHERS + ": " + EXCEPT_IO);
+            e.printStackTrace();
         }
     }
 

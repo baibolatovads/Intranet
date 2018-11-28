@@ -138,15 +138,12 @@ public class Student extends Person implements Serializable, Comparable, Interac
     }
 
     public void session(){
-        student = (Student) person;
-
-        mode = Mode.Student;
         System.out.println("You are logged as student!");
 
         System.out.println("Choose the option you want");
         System.out.println("1. Courses");
         System.out.println("2. Transcript");
-        System.out.println("3. Registration");
+        System.out.println("3. Register for a course");
         System.out.println("4. Student Info");
         System.out.println("5. Exit");
         String ans = sc.nextLine();
@@ -232,8 +229,31 @@ public class Student extends Person implements Serializable, Comparable, Interac
     }
 
     private void studentRegistration(){
+        System.out.println("Your courses: \n");
+        for(int i = 0; i < current.size(); ++i){
+            System.out.println((i + 1) + ". " + current.get(i).getName());
+        }
+        System.out.println("Choose the course you want to register");
+        String ans = sc.nextLine();
+        System.out.println("");
+        try{
+            int ind = Integer.decode(ans);
+            ind--;
 
+            if(ind > -1 && ind < current.size()){
+               registerForACourse(current.get(ind));
+            }
+            else {
+                System.out.println("Wrong selection");
+            }
+        }
+        catch(Exception e){
+            System.out.println("Wrong selection");
+        }
+        System.out.println("You have registered for the course successfully");
     }
+
+
 
     private void studentInfo(){
         System.out.println("Student Info Section\n");
