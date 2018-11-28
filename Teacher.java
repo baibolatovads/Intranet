@@ -1,38 +1,28 @@
 package com.company;
 
 import java.io.Serializable;
-<<<<<<< HEAD
 import java.nio.charset.CoderMalfunctionError;
-=======
 import java.util.ArrayList;
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class Teacher extends Employee implements Serializable {
     private Rank rank;
     private HashSet<Course> courses;
-<<<<<<< HEAD
     Scanner sc = new Scanner(System.in);
-=======
+
     private Teacher teacher;
     private Mode mode;
     private Person person;
     private ArrayList<Course> curCourses;
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
 
     public Teacher(Rank rank, HashSet<Course> courses) {
         this.rank = rank;
         this.courses = courses;
     }
 
-<<<<<<< HEAD
-    public Teacher(String name, String login){
-        super(name, login);
-=======
     public Teacher(String name, String login, String password){
         super(name, login, password);
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
     public Teacher(String name, String login, String password, String id, Rank rank, HashSet<Course> courses) {
         super(name, login, password, id);
@@ -80,13 +70,13 @@ public class Teacher extends Employee implements Serializable {
             for(Student s : c.getStudents()){
                 if(s.getName() == sName){
                     System.out.print("Mark for 1st attestation: ");
-                    int att1 = sc.nextInt();
+                    double att1 = sc.nextInt();
                     sc.nextLine();
                     System.out.print("Mark for 2nd attestation: ");
-                    int att2 = sc.nextInt();
+                    double att2 = sc.nextInt();
                     sc.nextLine();
                     System.out.print("Mark for final exam: ");
-                    int finalExam = sc.nextInt();
+                    double finalExam = sc.nextInt();
                     sc.nextLine();
 
                     Mark m = new Mark(att1, att2, finalExam);
@@ -190,7 +180,6 @@ public class Teacher extends Employee implements Serializable {
     }
 
     public void session(){
-<<<<<<< HEAD
         System.out.println("What do you want to do, "
                 + rank.name() + " " + name + "?\n");
 
@@ -234,11 +223,8 @@ public class Teacher extends Employee implements Serializable {
                     System.out.println("Command index is out of range!");
             }
         }
-=======
         teacher = (Teacher) person;
         mode = Mode.Teacher;
 
-
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
 }

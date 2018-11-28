@@ -1,7 +1,5 @@
 package com.company;
 
-import java.io.Serializable;
-
-public enum Faculty implements Serializable {
+public enum Faculty {
     FIT, ISE, BS, KMA, MKM, FEOGI;
 }

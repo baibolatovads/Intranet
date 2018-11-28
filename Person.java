@@ -14,16 +14,10 @@ public abstract class Person implements Serializable, Interactive {
     public Person(){
         password = defaultPassword;
     }
-<<<<<<< HEAD
-    public Person(String name, String login){
-        this.name = name;
-        this.login = login;
-=======
     public Person(String name, String login, String password){
         this.name = name;
         this.login = login;
         this.password = password;
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
     public Person(String name, String login, String password, String id){
         this.name = name;
@@ -79,7 +73,7 @@ public abstract class Person implements Serializable, Interactive {
 
         Person person = (Person) o;
 
-        return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
+       return (name.equals(person.name) && password.equals(person.password) && id.equals(person.id));
     }
 
     @Override

@@ -18,19 +18,11 @@ public class Student extends Person implements Serializable, Comparable, Interac
 
     public Student(){}
 
-<<<<<<< HEAD
-    public Student(String name, String login){
-        super(name, login);
-    }
-    public Student(String login, String name, String id, String password, Double gpa, Faculty faculty){
-        super(name, password, id, login);
-=======
     public Student(String name, String login, String password){
         super(name, login, password);
     }
     public Student(String name, String login, String password, String id, Double gpa, Faculty faculty){
         super(name, login, password, id);
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
         this.gpa = gpa;
         this.faculty = faculty;
     }
@@ -64,6 +56,11 @@ public class Student extends Person implements Serializable, Comparable, Interac
             marks.put(c, m);
         }
         marks.replace(c, m);
+    }
+
+    public String viewTeacher(Course c){
+        Teacher t = c.getTeacher();
+        return t + "\n";
     }
 
     public String viewCourses(){
@@ -150,13 +147,8 @@ public class Student extends Person implements Serializable, Comparable, Interac
         System.out.println("1. Courses");
         System.out.println("2. Transcript");
         System.out.println("3. Registration");
-<<<<<<< HEAD
-        System.out.println("4. Edit Info");
-
-=======
         System.out.println("4. Student Info");
         System.out.println("5. Exit");
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
         String ans = sc.nextLine();
         switch (ans) {
             case "1":
@@ -191,11 +183,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
                 ind--;
 
                 if(ind > -1 && ind < current.size()){
-<<<<<<< HEAD
-                    StudentCourse(ind);
-=======
                    StudentCourse(ind);
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
                 }
                 else {
                     System.out.println("Wrong selection");
@@ -214,10 +202,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
             System.out.println("1. Show Marks");
             System.out.println("2. Show Course Files");
             System.out.println("3. Show Course Info");
-<<<<<<< HEAD
-=======
             System.out.println("4. Show Teachers");
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
 
             ans = sc.nextLine();
 
@@ -234,23 +219,16 @@ public class Student extends Person implements Serializable, Comparable, Interac
                     System.out.println("Course Info Section:\n");
                     current.get(ind).toString();
                     break;
-<<<<<<< HEAD
-=======
                 case "4":
                     System.out.println("Teacher of the course is: ");
                     viewTeacher(current.get(ind));
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
             }
         }
     }
 
     private void StudentTranscript(){
         System.out.println("Transcript:\n");
-<<<<<<< HEAD
-        getMarks();
-=======
             getMarks();
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
 
     private void studentRegistration(){
@@ -261,8 +239,4 @@ public class Student extends Person implements Serializable, Comparable, Interac
         System.out.println("Student Info Section\n");
         student.toString();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684

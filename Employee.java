@@ -7,19 +7,11 @@ import java.util.Scanner;
 public abstract class Employee extends Person implements Comparable, Serializable, Interactive {
     protected double salary;
 
-<<<<<<< HEAD
-    public Employee(String name, String login){
-        super(name, login);
-    }
-    public Employee(String login, String password, String name, String id) {
-        super(login, password, name, id);
-=======
     public Employee(String name, String login, String password){
         super(name, login, password);
     }
     public Employee(String name, String login, String password, String id) {
         super(name, login, password, id);
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
 
     public Employee(String name, String login, String password, String id, double salary) {
@@ -80,8 +72,4 @@ public abstract class Employee extends Person implements Comparable, Serializabl
     }
 
     public void session(){}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684

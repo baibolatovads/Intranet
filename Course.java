@@ -9,6 +9,7 @@ import java.util.Vector;
 
 public class Course implements Serializable{
     private String name, id;
+    private Teacher teacher;
     HashSet<Student> students;
     HashSet<Course> prerequisites;
     HashSet<CourseFile> courseFiles;
@@ -16,9 +17,10 @@ public class Course implements Serializable{
     Faculty faculty;
 
     public Course(){}
-    public Course(String name, String id, int creditNum, Faculty faculty){
+    public Course(String name, String id, Teacher teacher, int creditNum, Faculty faculty){
         this.name = name;
         this.id = id;
+        this.teacher = teacher;
         this.creditsNumber = creditNum;
         this.faculty = faculty;
     }
@@ -37,6 +39,14 @@ public class Course implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public HashSet<Student> getStudents() {
@@ -80,7 +90,7 @@ public class Course implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
 
         Course c = (Course) o;
-        return (name.equals(c.name) && id.equals(c.id)
+        return (name.equals(c.name) && id.equals(c.id) && teacher.equals(c.teacher)
                 && students.equals(c.students) && prerequisites.equals(c.prerequisites) && courseFiles.equals(c.courseFiles));
     }
 
@@ -90,6 +100,7 @@ public class Course implements Serializable{
         return "Course{" +
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
+                ", teacher=" + teacher +
                 ", students=" + students +
                 ", prerequisites=" + prerequisites +
                 ", courseFiles=" + courseFiles +

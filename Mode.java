@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.Serializable;
-
-public enum Mode implements Serializable {
+public enum Mode {
     Student,
     Teacher,
     Executor,

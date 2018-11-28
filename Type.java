@@ -1,7 +1,5 @@
 package com.company;
 
-import java.io.Serializable;
-
-public enum Type implements Serializable {
+public enum Type {
     ACCEPTED, REJECTED, PENDING, DONE;
 }

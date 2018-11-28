@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Driver {
     private Person user = null;
     private HashSet<Person> users;
-    private static final String PATH = "C:\\Users\\User_PC\\Desktop\\OOP Foulder1\\Intranet\\src\\com\\company\\files\\";
+    private static final String PATH = "C:\\Users\\Abzal\\Documents\\Programming\\OOP\\Project\\src\\com\\company\\files\\";
     private static final String LOG = "log.txt";
     private ObjectOutputStream output;
     private ObjectInputStream input;
@@ -34,10 +34,10 @@ public class Driver {
     private static final String EXCEPT_IO = "Input / Output exception!";
     private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
 
-    private static final String TEACHERS = "teachers.out";
-    private static final String STUDENTS = "students.out";
-    private static final String MANAGERS = "managers.out";
-    private static final String EXECUTORS = "executors.out";
+    private static final String TEACHERS = PATH + "teachers.out";
+    private static final String STUDENTS = PATH + "students.out";
+    private static final String MANAGERS = PATH + "managers.out";
+    private static final String EXECUTORS = PATH +"executors.out";
 
 
     public Driver(){
@@ -319,13 +319,16 @@ public class Driver {
 
         }
         catch (ClassNotFoundException e) {
-            System.out.println(STUDENTS + ": " + EXCEPT_CLASS);
+            //System.out.println(STUDENTS + ": " + EXCEPT_CLASS);
+            e.printStackTrace();
         }
         catch (FileNotFoundException e) {
-            System.out.println(STUDENTS + ": " + EXCEPT_FILE);
+            //System.out.println(STUDENTS + ": " + EXCEPT_FILE);
+            e.printStackTrace();
         }
         catch (IOException e) {
-            System.out.println(STUDENTS + ": " + EXCEPT_IO);
+            //System.out.println(STUDENTS + ": " + EXCEPT_IO);
+            e.printStackTrace();
         }
     }
 
