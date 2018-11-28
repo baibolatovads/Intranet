@@ -63,6 +63,7 @@ public class Registration implements Serializable {
         /*student.getCourses().add(course);
         student.setTeacher(course, course.getTeacher());*/
         course.addStudent(student);
+        //Student.current.add(course);
         //course.getTeacher().addStudent(course, student);
         type = Type.ACCEPTED;
     }

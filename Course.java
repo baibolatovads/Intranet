@@ -52,7 +52,8 @@ public class Course implements Serializable{
     }
 
     public void addStudent(Student student) {
-        this.students.add(student);
+        Driver.students.add(student);
+
     }
 
     public HashSet<Course> getPrerequisites() {

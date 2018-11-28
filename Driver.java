@@ -59,7 +59,7 @@ public class Driver {
     }*/
 
     public void run(){
-        System.out.println("Are you enter as admin or user?");
+        System.out.println(" Hello!\n Welcome to Intranet!\n Are you an admin or user?");
 
         String ans = sc.nextLine().toLowerCase();
 
@@ -287,19 +287,6 @@ public class Driver {
         }
     }
 
-    private void findUser(String login, String password){
-        for(Person u : users){
-            if(u.login.equals(login)){
-                user = u;
-            }
-        }
-        if(user == null){
-            System.out.println("User is not found");
-        }
-        if(user.password != password){
-            System.out.println("Invalid Password");
-        }
-    }
     //SERIALIZATION
     private void loadData() {
         loadStudents();

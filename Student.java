@@ -7,14 +7,12 @@ public class Student extends Person implements Serializable, Comparable, Interac
     //working on it
     private double gpa;
     private Faculty faculty;
-    private ArrayList<Course> current = new ArrayList<>();
+    public  ArrayList<Course> current = new ArrayList<>();
     private HashSet<Course> passed = new HashSet<>();
     private HashMap<Course, Teacher> teachers = new HashMap<>();
     private Registration registration = new Registration();
     private HashMap<Course, Mark> marks = new HashMap<>();
-    private Student student;
-    private Person person;
-    private Mode mode;
+
 
     public Student(){}
 
@@ -126,17 +124,6 @@ public class Student extends Person implements Serializable, Comparable, Interac
         return -1;
     }
 
-
-    public void login() {
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("Welcome Student!");
-        System.out.println("Enter name: ");
-        name = s.next();
-        System.out.println("Enter password: ");
-        password = s.next();
-    }
-
     public void session(){
         System.out.println("You are logged as student!");
 
@@ -144,8 +131,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         System.out.println("1. Courses");
         System.out.println("2. Transcript");
         System.out.println("3. Register for a course");
-        System.out.println("4. Student Info");
-        System.out.println("5. Exit");
+        System.out.println("4. Exit");
         String ans = sc.nextLine();
         switch (ans) {
             case "1":
@@ -158,7 +144,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
                 studentRegistration();
                 break;
             case "4":
-                studentInfo();
+                System.out.println("Good Bye!");
                 break;
         }
     }
@@ -200,7 +186,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
             System.out.println("2. Show Course Files");
             System.out.println("3. Show Course Info");
             System.out.println("4. Show Teachers");
-
+            System.out.println("5. Exit");
             ans = sc.nextLine();
 
             switch(ans){
@@ -219,6 +205,8 @@ public class Student extends Person implements Serializable, Comparable, Interac
                 case "4":
                     System.out.println("Teacher of the course is: ");
                     viewTeacher(current.get(ind));
+                case "5":
+                    return;
             }
         }
     }
@@ -243,15 +231,17 @@ public class Student extends Person implements Serializable, Comparable, Interac
 
             if(ind > -1 && ind < Driver.courses.size()){
                registerForACourse(Driver.courses.get(ind));
+               current.add(Driver.courses.get(ind));
                 System.out.println("You have registered for the course successfully");
-
             }
             else {
+
                 System.out.println("Wrong selection");
             }
         }
         catch(Exception e){
             System.out.println("Wrong selection");
+            e.printStackTrace();
         }
 
     }
@@ -260,6 +250,6 @@ public class Student extends Person implements Serializable, Comparable, Interac
 
     private void studentInfo(){
         System.out.println("Student Info Section\n");
-        student.toString();
+        toString();
     }
 }
