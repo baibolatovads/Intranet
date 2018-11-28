@@ -35,7 +35,8 @@ public class Driver {
     private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
 
     private static final String TEACHERS = "teachers.out";
-    private static final String STUDENTS = "students.out";
+    private static final String STUDENTS = PATH + "students.out";
+
     private static final String MANAGERS = "managers.out";
     private static final String EXECUTORS = "executors.out";
 
@@ -218,8 +219,6 @@ public class Driver {
 
             String ans = sc.nextLine();
             Mode mode;
-            String login1 = admin.getLogin();
-            String password1 = admin.getPassword();
             switch (ans) {
                 case "1":
                     mode = Mode.Student;
@@ -306,7 +305,6 @@ public class Driver {
         loadTeachers();
         loadExecutors();
         loadManagers();
-
     }
 
     private void loadStudents() {

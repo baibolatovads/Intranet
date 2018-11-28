@@ -3,15 +3,19 @@ package com.company;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Teacher extends Employee implements Serializable {
     private Rank rank;
     private HashSet<Course> courses;
     private Teacher teacher;
     private Mode mode;
+    private Mark mark;
     private Person person;
     private ArrayList<Course> curCourses;
-
+    private static final Scanner sc = new Scanner(System.in);
+    private Student student;
+    private Mark mark;
     public Teacher(Rank rank, HashSet<Course> courses) {
         this.rank = rank;
         this.courses = courses;
@@ -94,7 +98,28 @@ public class Teacher extends Employee implements Serializable {
     public void session(){
         teacher = (Teacher) person;
         mode = Mode.Teacher;
+        student = (Student) person;
+        System.out.println("You are logged as a teacher");
 
+        System.out.println("Choose option");
+        System.out.println("1. View Students");
+        System.out.println("2. View courses");
+        System.out.println("3. Put mark");
+        String ans = sc.nextLine();
 
+        switch(ans){
+            case "1":
+                teacher.viewStudents();
+                break;
+            case "2":
+                teacher.viewCourse();
+                break;
+            case "3":
+                double fst = sc.nextDouble();
+                double snd = sc.nextDouble();
+                double finalE = sc.nextDouble();
+                mark = new Mark(fst, snd, finalE);
+                putMark(mark, );
+        }
     }
 }

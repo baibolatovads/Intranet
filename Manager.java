@@ -2,8 +2,13 @@ package com.company;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Manager extends Employee implements Comparable, Serializable, Interactive{
+    private Manager manager;
+    private Person person;
+    private Mode mode;
+    private static final Scanner sc = new Scanner(System.in);
     public Manager()
     { }
 
@@ -46,7 +51,25 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
     }
 
     public void session(){
+        manager = (Manager) person;
+        mode = Mode.Manager;
 
+        System.out.println("You are logged as a manager");
+
+        System.out.println("Choose option");
+        System.out.println("1. View info about teachers");
+        System.out.println("2. View info about students");
+
+        String ans = sc.nextLine();
+
+        switch(ans){
+            case "1":
+                manager.ViewInfoAboutTeachers();
+                break;
+            case "2":
+                manager.ViewInfoAboutStudents();
+                break;
+        }
     }
 
 }
