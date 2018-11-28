@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashSet;
 import java.util.Scanner;
 
 import java.io.IOException;
@@ -87,7 +88,10 @@ public class Admin extends Employee implements Interactive {
                 addStudent(name, newLogin, password);
                 break;
             case Teacher:
-                addTeacher(name, newLogin, password);
+                System.out.println("Enter rank");
+                Rank rank = Rank.valueOf(sc.next().toUpperCase());
+                sc.nextLine();
+                addTeacher(name, newLogin, password, rank);
                 break;
             case Manager:
                 addManager( name, newLogin, password);
@@ -120,8 +124,8 @@ public class Admin extends Employee implements Interactive {
         }
     }
 
-    private void addTeacher( String name, String newLogin, String password) {
-        Teacher teacher = new Teacher( name, newLogin, password);
+    private void addTeacher( String name, String newLogin, String password, Rank rank) {
+        Teacher teacher = new Teacher( name, newLogin, password, null, rank, new HashSet<Course>());
 
         if (!Driver.teachers.contains(teacher)) {
             Driver.teachers.add(teacher);
