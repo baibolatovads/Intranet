@@ -59,7 +59,7 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
         System.out.println("Choose option");
         System.out.println("1. View info about teachers");
         System.out.println("2. View info about students");
-       //System.out.println("3. Add courses");
+        System.out.println("3. Add courses");
 
         String ans = sc.nextLine();
 
@@ -70,8 +70,24 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
             case "2":
                 System.out.println(manager.ViewInfoAboutStudents());
                 break;
+            case "3":
+                addCourseForRegistration();
+                break;
         }
     }
 
+
+    public void addCourseForRegistration(){
+        System.out.println("Enter name of the course:");
+        String name = sc.nextLine();
+        System.out.println("Enter id of the course " + name);
+        String id = sc.nextLine();
+        System.out.println("Enter credits number of the course");
+        Integer credNum = sc.nextInt();
+        Course c = new Course(name, id, credNum);
+        Driver.courses.add(c);
+        Driver.saveCourses();
+        System.out.println("Course is added successfully!");
+    }
 }
 

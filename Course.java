@@ -17,12 +17,10 @@ public class Course implements Serializable{
     Faculty faculty;
 
     public Course(){}
-    public Course(String name, String id, Teacher teacher, int creditNum, Faculty faculty){
+    public Course(String name, String id, int creditNum){
         this.name = name;
         this.id = id;
-        this.teacher = teacher;
         this.creditsNumber = creditNum;
-        this.faculty = faculty;
     }
 
     public String getName() {

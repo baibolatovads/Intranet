@@ -229,9 +229,10 @@ public class Student extends Person implements Serializable, Comparable, Interac
     }
 
     private void studentRegistration(){
+        Driver.loadCourses();
         System.out.println("Your courses: \n");
-        for(int i = 0; i < current.size(); ++i){
-            System.out.println((i + 1) + ". " + current.get(i).getName());
+        for(int i = 0; i < Driver.courses.size(); ++i){
+            System.out.println((i + 1) + ". " + Driver.courses.get(i).getName());
         }
         System.out.println("Choose the course you want to register");
         String ans = sc.nextLine();
@@ -240,8 +241,10 @@ public class Student extends Person implements Serializable, Comparable, Interac
             int ind = Integer.decode(ans);
             ind--;
 
-            if(ind > -1 && ind < current.size()){
-               registerForACourse(current.get(ind));
+            if(ind > -1 && ind < Driver.courses.size()){
+               registerForACourse(Driver.courses.get(ind));
+                System.out.println("You have registered for the course successfully");
+
             }
             else {
                 System.out.println("Wrong selection");
@@ -250,7 +253,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         catch(Exception e){
             System.out.println("Wrong selection");
         }
-        System.out.println("You have registered for the course successfully");
+
     }
 
 

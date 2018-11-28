@@ -34,6 +34,7 @@ public class Driver {
     private static final String EXCEPT_IO = "Input / Output exception!";
     private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
 
+    private static final String COURSES = PATH + "courses.out";
     private static final String TEACHERS = PATH + "teachers.out";
     private static final String STUDENTS = PATH + "students.out";
     private static final String MANAGERS = PATH + "managers.out";
@@ -454,6 +455,43 @@ public class Driver {
 
             oot.flush();
             oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(EXECUTORS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(EXECUTORS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void saveCourses() {
+        try {
+            ObjectOutputStream oot = new ObjectOutputStream(new FileOutputStream(COURSES));
+
+            oot.writeObject(courses);
+
+            oot.flush();
+            oot.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(STUDENTS + ": " + EXCEPT_FILE);
+        }
+        catch (IOException e) {
+            System.out.println(STUDENTS + ": " + EXCEPT_IO);
+        }
+    }
+
+    public static void loadCourses() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(COURSES));
+
+            courses = (ArrayList<Course>) ois.readObject();
+
+            ois.close();
+
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println(EXECUTORS + ": " + EXCEPT_CLASS);
         }
         catch (FileNotFoundException e) {
             System.out.println(EXECUTORS + ": " + EXCEPT_FILE);

@@ -181,9 +181,10 @@ public class Teacher extends Employee implements Serializable, Interactive {
     }
 
     public void session(){
-        System.out.println("What do you want to do, "
+        /*System.out.println("What do you want to do, "
                 + rank.name() + " " + name + "?\n");
-
+*/
+        System.out.println("Hello teacher!");
         while(true) {
             System.out.println("0) Log off");
             System.out.println("1) View courses");
