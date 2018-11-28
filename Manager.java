@@ -7,12 +7,20 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
     public Manager()
     { }
 
+<<<<<<< HEAD
     public Manager(String name, String login){
         super(name, login);
     }
     public Manager(String name, String password, String id, String login, double salary)
     {
         super(name,password,id, login,salary);
+=======
+    public Manager(String name, String login, String password){
+        super(name, login, password);
+    }
+    public Manager(String name, String login, String password, String id, double salary) {
+        super(name, login, password, id, salary);
+>>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
     }
     static private ArrayList<Student> students;
     static private ArrayList<Teacher> teachers;
@@ -46,6 +54,12 @@ public class Manager extends Employee implements Comparable, Serializable, Inter
         return s;
     }
 
+<<<<<<< HEAD
     public void session(){}
+=======
+    public void session(){
+
+    }
+>>>>>>> f85a0b24d05eb0d51b9f231a7110c0959efaf684
 
 }
