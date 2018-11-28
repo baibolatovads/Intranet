@@ -13,11 +13,12 @@ public class Mark implements Serializable {
         finalExam = 0;
     }
 
-    public Mark(double fst, double snd, double finalExam){
-        this.fstAttestation = fst;
-        this.sndAttestation = snd;
+    public Mark(double att1, double att2, double finalExam){
+        fstAttestation = att1;
+        sndAttestation = att2;
         this.finalExam = finalExam;
     }
+
     public double getFstAttestation(){
         return fstAttestation;
     }

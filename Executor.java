@@ -10,10 +10,10 @@ import java.util.Scanner;
 public class Executor extends Employee implements Serializable, Interactive {
     static private HashSet<Order> orders;
     private HashSet<Order> rejectedOrders;
+    Executor executor;
+    Mode mode;
+    Person person;
     private static final Scanner sc = new Scanner(System.in);
-    private Person person;
-    private Executor executor;
-    private Mode mode;
     public Executor(){
 
     }
@@ -88,28 +88,29 @@ public class Executor extends Employee implements Serializable, Interactive {
     }
 
     public void session(){
-        executor = (Executor) person;
-        mode = Mode.Executor;
+            executor = (Executor) person;
+            mode = Mode.Executor;
 
-        System.out.println("You are logged as a manager");
+            System.out.println("You are logged as a manager");
 
-        System.out.println("Choose option");
-        System.out.println("1. View new orders");
-        System.out.println("2. View executed orders");
-        System.out.println("3. View accepted orders");
+            System.out.println("Choose option");
+            System.out.println("1. View new orders");
+            System.out.println("2. View executed orders");
+            System.out.println("3. View accepted orders");
 
-        String ans = sc.nextLine();
+            String ans = sc.nextLine();
 
-        switch (ans){
-            case "1":
-                executor.viewNewOrders();
-                break;
-            case "2":
-                executor.viewExecutedOrders();
-                break;
-            case "3":
-                executor.viewAcceptedOrders();
-                break;
+            switch (ans){
+                case "1":
+                    executor.viewNewOrders();
+                    break;
+                case "2":
+                    executor.viewExecutedOrders();
+                    break;
+                case "3":
+                    executor.viewAcceptedOrders();
+                    break;
+            }
         }
-    }
+
 }

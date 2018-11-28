@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Driver {
     private Person user = null;
     private HashSet<Person> users;
-    private static final String PATH = "C:\\Users\\User_PC\\Desktop\\OOP Foulder1\\Intranet\\src\\com\\company\\files\\";
+    private static final String PATH = "src\\com\\company\\files\\";
     private static final String LOG = "log.txt";
     private ObjectOutputStream output;
     private ObjectInputStream input;
@@ -34,11 +34,10 @@ public class Driver {
     private static final String EXCEPT_IO = "Input / Output exception!";
     private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
 
-    private static final String TEACHERS = "teachers.out";
+    private static final String TEACHERS = PATH + "teachers.out";
     private static final String STUDENTS = PATH + "students.out";
-
-    private static final String MANAGERS = "managers.out";
-    private static final String EXECUTORS = "executors.out";
+    private static final String MANAGERS = PATH + "managers.out";
+    private static final String EXECUTORS = PATH +"executors.out";
 
 
     public Driver(){
@@ -70,19 +69,28 @@ public class Driver {
         String login = sc.nextLine().toLowerCase();
         String password = sc.nextLine();
 
-        switch (ans) {
-            case "admin":
-                sessionAdmin(login, password);
-                break;
-            case "user":
-                sessionUser(login, password);
-                break;
+        try {
+            switch (ans) {
+                case "admin":
+                    sessionAdmin(login, password);
+                    break;
+                case "user":
+                    sessionUser(login, password);
+                    break;
+            }
+        }
+        catch(LoginNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        catch(InvalidPasswordException e){
+            System.out.println(e.getMessage());
         }
 
         saveData();
     }
 
-    private void sessionUser(String login, String password) {
+    private void sessionUser(String login, String password)
+    throws LoginNotFoundException, InvalidPasswordException{
         ArrayList<Person> list = new ArrayList<>();
 
         boolean found = false;
@@ -92,37 +100,22 @@ public class Driver {
         list.addAll(managers);
         list.addAll(executors);
 
-        findUser(login, password);
-
         for (Person u: list) {
-            if (u.getLogin().equals(login) && u.getPassword().equals(password)) {
-                user = u;
-
+            if (u.getLogin().equals(login)){
                 found = true;
+                if(u.getPassword().equals(password)) {
+                    user = u;
 
-                Driver.writeLog("User " + u.getLogin() + " logged in!");
+                    Driver.writeLog("User " + u.getLogin() + " logged in!");
+                    u.session();
 
-                switch (u.getClass().toString().split(" ")[1]) {
-
-                    case "Student":
-                        student.session();
-                        break;
-                    case "Teacher":
-                        teacher.session();
-                        break;
-                    case "Manager":
-                        manager.session();
-                        break;
-                    case "Executor":
-                        executor.session();
-                        break;
+                    break;
                 }
-
-                break;
+                else throw new InvalidPasswordException();
             }
         }
         if (!found) {
-            System.out.println("Invalid login or password!");
+            throw new LoginNotFoundException();
         }
 
     }
@@ -168,44 +161,48 @@ public class Driver {
         }
     }*/
 
-    private void sessionAdmin(String login, String password) {
+    private void sessionAdmin(String login, String password)
+    throws LoginNotFoundException, InvalidPasswordException{
         admin = new Admin();
 
-        if (admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
-            String ans = "";
+        if (admin.getLogin().equals(login)){
+            if(admin.getPassword().equals(password)) {
+                String ans = "";
 
-            Driver.writeLog("Admin logged in!");
+                Driver.writeLog("Admin logged in!");
 
-            while (!ans.equals("exit")) {
-                System.out.println("Choose the option!");
-                System.out.println("1. Add new user");
-                System.out.println("2. Delete user");
-                System.out.println("3. Show log file");
+                while (true) {
+                    System.out.println("Choose the option!");
+                    System.out.println("1. Add new user");
+                    System.out.println("2. Delete user");
+                    System.out.println("3. Show log file");
 
-                ans = sc.nextLine();
+                    ans = sc.nextLine();
 
-                switch (ans) {
-                    case "1":
-                        adminAdd();
-                        break;
-                    case "2":
-                        adminRemove();
-                        break;
-                    case "3":
-                        adminLogs();
-                        break;
-                    case "exit":
-                        return;
-                    default:
-                        System.out.println("Invalid option!");
-                        break;
+                    switch (ans) {
+                        case "1":
+                            adminAdd();
+                            break;
+                        case "2":
+                            adminRemove();
+                            break;
+                        case "3":
+                            adminLogs();
+                            break;
+                        case "exit":
+                            return;
+                        default:
+                            System.out.println("Invalid option!");
+                            break;
+                    }
                 }
             }
-
-
+            else{
+                throw new InvalidPasswordException();
+            }
         }
         else {
-            System.out.println("Invalid login or password!");
+            throw new LoginNotFoundException();
         }
     }
 
@@ -219,6 +216,8 @@ public class Driver {
 
             String ans = sc.nextLine();
             Mode mode;
+            String login1 = admin.getLogin();
+            String password1 = admin.getPassword();
             switch (ans) {
                 case "1":
                     mode = Mode.Student;
@@ -252,6 +251,7 @@ public class Driver {
             String password = sc.nextLine();
 
             admin.addUser(name, login, password, mode);
+            break;
         }
 
     }
@@ -305,6 +305,7 @@ public class Driver {
         loadTeachers();
         loadExecutors();
         loadManagers();
+
     }
 
     private void loadStudents() {
