@@ -1,19 +1,21 @@
 package com.company;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Order implements Serializable {
     private Executor executor;
     private String message;
     private Type type;
     private Teacher sender;
-    private int id;
+    private Date date;
 
-    public Order(Teacher sender, String message, int id) {
+    public Order(Teacher sender, String message) {
         this.sender = sender;
         this.message = message;
         this.type = type.PENDING;
-        this.id = id;
+        date = new Date();
     }
 
     public Teacher getSender() {
@@ -47,10 +49,11 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         return "Order{" +
                 ", message='" + message + '\'' +
                 ", type=" + type +
-                ", id='" + id + '\'' +
+                ", data='" + sdf.format(date) + '\'' +
                 '}';
     }
 

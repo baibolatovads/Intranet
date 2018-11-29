@@ -163,11 +163,7 @@ public class Teacher extends Employee implements Serializable, Interactive {
         System.out.println("Message: ");
         String message = sc.nextLine();
 
-        System.out.println("ID (int): ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        Executor.addOrder(new Order(this, message, id));
+        Executor.addOrder(new Order(this, message));
     }
 
     @Override

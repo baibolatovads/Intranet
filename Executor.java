@@ -8,11 +8,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Executor extends Employee implements Serializable, Interactive {
-    static private HashSet<Order> orders;
-    private HashSet<Order> rejectedOrders;
-    Executor executor;
-    Mode mode;
-    Person person;
+    static public ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<Order> rejectedOrders = new ArrayList<>();
+
     private static final Scanner sc = new Scanner(System.in);
     public Executor(){
 
@@ -32,6 +30,7 @@ public class Executor extends Employee implements Serializable, Interactive {
     public void acceptOrder(Order order){
         if(order.getType() != Type.ACCEPTED)
             order.accept(this);
+        else System.out.println("Order is already accepted!");
     }
 
     public void rejectOrder(Order order){
@@ -43,28 +42,35 @@ public class Executor extends Employee implements Serializable, Interactive {
         if(order.getType() == Type.ACCEPTED && order.getExecutor() == this){
             order.execute();
         }
+        else System.out.println("Order hasn't been accepted by you!");
     }
 
     public void viewNewOrders(){
+        int i = 1;
         for(Order order : orders){
             if(order.getType() != Type.ACCEPTED
                     && !rejectedOrders.contains(order))
-                System.out.println(order);
+                System.out.println(i + " " + order);
+            i++;
         }
     }
 
     public void viewAcceptedOrders(){
+        int i = 1;
         for(Order order : orders){
             if(order.getType() == Type.ACCEPTED && order.getExecutor() == this)
-                System.out.println(order);
+                System.out.println(i + " " + order);
+            i++;
         }
     }
 
     public void viewExecutedOrders(){
+        int i = 1;
         for(Order order : orders){
             if(order.getType() == Type.DONE && order.getExecutor() == this){
-                System.out.println(order);
+                System.out.println(i + " " + order);
             }
+            i++;
         }
     }
 
@@ -82,11 +88,10 @@ public class Executor extends Employee implements Serializable, Interactive {
         return Objects.hash(super.hashCode(), rejectedOrders);
     }
 
-    public void session(){
-            executor = (Executor) person;
-            mode = Mode.Executor;
+    public void session() {
 
-            System.out.println("You are logged as a manager");
+        System.out.println("You are logged as an executor.");
+        while (true) {
 
             System.out.println("Choose option");
             System.out.println("1. View new orders");
@@ -95,29 +100,44 @@ public class Executor extends Employee implements Serializable, Interactive {
             System.out.println("4. Accept order");
             System.out.println("5. Reject order");
             System.out.println("6. Reject every non-accepted order");
+            System.out.println("7. Execute order");
 
             String ans = sc.nextLine();
 
-            switch (ans){
+            if (ans.equals("exit")) break;
+
+            switch (ans) {
                 case "1":
-                    executor.viewNewOrders();
+                    viewNewOrders();
                     break;
                 case "2":
-                    executor.viewExecutedOrders();
+                    viewExecutedOrders();
                     break;
                 case "3":
-                    executor.viewAcceptedOrders();
+                    viewAcceptedOrders();
                     break;
                 case "4":
-                    System.out.println("ID: ");
-                    break;
                 case "5":
+                case "7":
+                    System.out.println("Enter index");
+                    int index = sc.nextInt();
+                    sc.nextLine();
+                    if (index <= 0 || index > orders.size())
+                        System.out.println("Index out of range!");
+
+                    if (ans.equals("4")) acceptOrder(orders.get(index - 1));
+                    else if (ans.equals("5")) rejectOrder(orders.get(index - 1));
+                    else executeOrder(orders.get(index - 1));
                     break;
                 case "6":
+                    for (Order o : orders){
+                        if(o.getType() != Type.ACCEPTED)
+                            rejectOrder(o);
+                    }
                     break;
                 default:
                     System.out.println("Invalid option!");
             }
         }
-
+    }
 }
