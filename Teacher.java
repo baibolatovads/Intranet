@@ -181,13 +181,12 @@ public class Teacher extends Employee implements Serializable, Interactive {
                 + rank.name().toLowerCase() + " " + name + "?\n");
 
         while(true) {
-            System.out.println("0) Log off");
             System.out.println("1) View courses");
             System.out.println("2) View students");
             System.out.println("3) Add a course file");
             System.out.println("4) Delete a course file");
             System.out.println("5) Put mark");
-            System.out.println("6) Send order\n");
+            System.out.println("6) Send order");
             System.out.println("7) Register for a course");
 
             Scanner sc = new Scanner(System.in);
@@ -219,6 +218,7 @@ public class Teacher extends Employee implements Serializable, Interactive {
                     break;
                 case 7:
                     registration();
+                    break;
                 default:
                     System.out.println("Command index is out of range!");
             }

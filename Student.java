@@ -220,7 +220,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
         }
         System.out.println("Choose the course you want to register");
         String ans = sc.nextLine();
-        System.out.println("");
+        System.out.println();
         try{
             int ind = Integer.decode(ans);
             ind--;
