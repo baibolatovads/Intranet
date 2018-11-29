@@ -10,7 +10,6 @@ public class Student extends Person implements Serializable, Comparable, Interac
     public  ArrayList<Course> current = new ArrayList<>();
     private HashSet<Course> passed = new HashSet<>();
     private HashMap<Course, Teacher> teachers = new HashMap<>();
-    private Registration registration = new Registration();
     private HashMap<Course, Mark> marks = new HashMap<>();
 
 
@@ -26,9 +25,6 @@ public class Student extends Person implements Serializable, Comparable, Interac
     }
 
     private static final Scanner sc = new Scanner(System.in);
-    public void registerForACourse(Course c){
-        registration.addRegistration(new Registration(this, c, Type.PENDING));
-    }
 
     public ArrayList<Course> getCourses(){
         return current;
@@ -71,7 +67,7 @@ public class Student extends Person implements Serializable, Comparable, Interac
 
     @Override
     public int hashCode() {
-        return Objects.hash(gpa, faculty, current, passed, teachers, registration, marks);
+        return Objects.hash(gpa, faculty, current, passed, teachers, marks);
     }
 
     public void setTeacher(Course course, Teacher teacher){
@@ -230,7 +226,6 @@ public class Student extends Person implements Serializable, Comparable, Interac
             ind--;
 
             if(ind > -1 && ind < Driver.courses.size()){
-               registerForACourse(Driver.courses.get(ind));
                current.add(Driver.courses.get(ind));
                 System.out.println("You have registered for the course successfully");
             }
