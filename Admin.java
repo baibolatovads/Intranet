@@ -55,24 +55,6 @@ public class Admin extends Employee implements Interactive {
 
     }
 
-    public static boolean ValidLogin(String login) {
-        if (!(login.contains("_") || login.contains("#") || login.contains(".")))
-            return false;
-        if (isHaveSpace(login))
-            return false;
-        if (isHaveDigits(login))
-            return false;
-        return true;
-    }
-
-    public static boolean ValidName(String name) {
-        if (isHaveDigits(name))
-            return false;
-        if (isHaveSpace(name))
-            return false;
-        return true;
-    }
-
     static public char GetSymbolByType(UserType Type) {
         if (Type == UserType.TEACHER)
             return '.';
