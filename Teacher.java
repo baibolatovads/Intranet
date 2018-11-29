@@ -188,6 +188,7 @@ public class Teacher extends Employee implements Serializable, Interactive {
             System.out.println("4) Delete a course file");
             System.out.println("5) Put mark");
             System.out.println("6) Send order\n");
+            System.out.println("7) Register for a course");
 
             Scanner sc = new Scanner(System.in);
             int cmd = sc.nextInt();
@@ -216,9 +217,41 @@ public class Teacher extends Employee implements Serializable, Interactive {
                 case 6:
                     sendOrder();
                     break;
+                case 7:
+                    registration();
                 default:
                     System.out.println("Command index is out of range!");
             }
+        }
+
+    }
+
+
+    private void registration(){
+        Driver.loadCourses();
+        System.out.println("Your courses: \n");
+        for(int i = 0; i < Driver.courses.size(); ++i){
+            System.out.println((i + 1) + ". " + Driver.courses.get(i).getName());
+        }
+        System.out.println("Choose the course you want to register");
+        String ans = sc.nextLine();
+        System.out.println("");
+        try{
+            int ind = Integer.decode(ans);
+            ind--;
+
+            if(ind > -1 && ind < Driver.courses.size()){
+                courses.add(Driver.courses.get(ind));
+                System.out.println("You have registered for the course successfully");
+            }
+            else {
+
+                System.out.println("Wrong selection");
+            }
+        }
+        catch(Exception e){
+            System.out.println("Wrong selection");
+            e.printStackTrace();
         }
 
     }
